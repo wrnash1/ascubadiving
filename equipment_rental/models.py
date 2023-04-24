@@ -1,9 +1,10 @@
 from django.db import models
+from add_diver import models as add_diver_models
 
 
 # Create your models here.
 class equipment_rental(models.Model):
-    name = models.CharField(max_length=100, help_text="First and Last Name")
+    name = models.ForeignKey(add_diver_models.add_diver, on_delete=models.CASCADE)
     date_of_rental = models.DateField()
     date_due = models.DateField()
     equipment = (
