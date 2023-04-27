@@ -20,3 +20,11 @@ Things to think about adding
 3. schedule classes
 4. vendor website links
 5. 
+
+
+Rental App
+1.  Add multiple items to rent.
+
+Hydro change dates in database
+
+Compressor Hours app

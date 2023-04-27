@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}ascubadiving Log In{% endblock title %}
+{% block content %}
+<style>
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #f2f2f2;
+  }
+
+</style>
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <h2 class="mb-4">Log In</h2>
+    <form method="post" class="w-50">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-success mt-3" type="submit">Log In</button>
+    </form>
+  </div> 
+{% endblock content %}
