@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Equipment Repair</h1>
+  <p>Welcome to our Equipment Repair page. Here, you can request repairs for any equipment that needs fixing.</p>
+
+  <form method="POST">
+    {% csrf_token %}
+    <label for="equipment">Equipment:</label>
+    <select id="equipment" name="equipment">
+      <option value="scuba-tank">Scuba Tank</option>
+      <option value="bcd">BCD</option>
+      <option value="regulator">Regulator</option>
+      <option value="wetsuit">Wetsuit</option>
+      <option value="mask">Mask</option>
+      <option value="snorkel">Snorkel</option>
+    </select>
+    <br><br>
+    <label for="description">Description of Problem:</label><br>
+    <textarea id="description" name="description" rows="4" cols="50"></textarea>
+    <br><br>
+    <button type="submit">Submit Request</button>
+  </form>
+{% endblock %}

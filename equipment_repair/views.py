@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def equipment_repair(request):
+    return render(request, "equipment_repair.html")

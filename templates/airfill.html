@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Airfill</h1>
+  <p>Get your tanks filled with fresh air here!</p>
+
+  <form method="POST">
+    {% csrf_token %}
+    <label for="tank_size">Tank size:</label>
+    <select name="tank_size" id="tank_size">
+      <option value="80">80 cubic feet</option>
+      <option value="100">100 cubic feet</option>
+      <option value="120">120 cubic feet</option>
+    </select>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" id="quantity" min="1" max="10" value="1">
+
+    <button type="submit">Submit</button>
+  </form>
+
+{% endblock %}

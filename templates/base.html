@@ -47,7 +47,7 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link active" aria-current="page">
+                <a href="{% url 'add_diver' %}" class="nav-link active" aria-current="page">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#" />
                     </svg>
@@ -55,7 +55,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="{% url 'airfill' %}" class="nav-link text-white">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#speedometer2" />
                     </svg>
@@ -63,15 +63,15 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+               <a href="{% url 'equipment_rental' %}" class="nav-link text-white">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table" />
                     </svg>
-                    Equipment Rentals
+                    Equipment rental
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="{% url 'equipment_repair' %}" class="nav-link text-white">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#grid" />
                     </svg>
@@ -111,8 +111,8 @@
         {% endblock %}
     </main>
     <footer>
-		<p>&copy; {% now 'Y' %} ascubadiving, LLC. All rights reserved.</p>
-</footer>
+        <p>&copy; {% now 'Y' %} ascubadiving, LLC. All rights reserved.</p>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
