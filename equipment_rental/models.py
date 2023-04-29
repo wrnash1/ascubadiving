@@ -2,59 +2,42 @@ from django.db import models
 from add_diver import models as add_diver_models
 
 
-# Create your models here.
-class equipment_rental(models.Model):
-    name = models.ForeignKey(add_diver_models.add_diver, on_delete=models.CASCADE)
-    date_of_rental = models.DateField()
-    date_due = models.DateField()
-    equipment = (
-        ("BCD", "BCD"),
-        ("Regulator", "Regulator"),
-        ("Wetsuit", "Wetsuit"),
-        ("Tank", "Tank"),
-        ("Weights", "Weights"),
-        ("Mask", "Mask"),
-        ("Fins", "Fins"),
-        ("Snorkel", "Snorkel"),
-        ("Dive Computer", "Dive Computer"),
-        ("Dive Light", "Dive Light"),
-        ("Dive Bag", "Dive Bag"),
-        ("Other", "Other"),
-    )
-    equipment_rented = models.CharField(max_length=100, choices=equipment)
-    equipment_serial_number = models.CharField(
+class Equipment(models.Model):
+    name = models.CharField(max_length=100)
+    serial_number = models.CharField(
         max_length=100, blank=True, help_text="Serial Number"
     )
-    equipment_size = models.CharField(max_length=100, blank=True, help_text="Size")
-    equipment_color = models.CharField(max_length=100, blank=True, help_text="Color")
-    equipment_condition = (
+    size = models.CharField(max_length=100, blank=True, help_text="Size")
+    color = models.CharField(max_length=100, blank=True, help_text="Color")
+    condition_choices = (
         ("New", "New"),
         ("Used", "Used"),
     )
-    equipment_condition = models.CharField(max_length=100, choices=equipment_condition)
-    equipment_notes = models.CharField(max_length=100, blank=True, help_text="Notes")
-    equipment_rental_price = models.IntegerField()
-    equipment_deposit = models.IntegerField()
-    equipment_rental_insurance = models.IntegerField()
-    equipment_rental_insurance_price = models.IntegerField()
-    equipment_rental_total = models.IntegerField()
-    equipment_rental_payment = models.IntegerField()
-    equipment_rental_payment_type = (
-        ("Cash", "Cash"),
-        ("Check", "Check"),
-        ("Credit Card", "Credit Card"),
-        ("Debit Card", "Debit Card"),
-        ("Paypal", "Paypal"),
-        ("Venmo", "Venmo"),
-        ("Cash App", "Cash App"),
-        ("Zelle", "Zelle"),
-    )
-    equipment_rental_payment_type = models.CharField(
-        max_length=100, choices=equipment_rental_payment_type
-    )
-    equipment_rental_payment_notes = models.CharField(
-        max_length=100, blank=True, help_text="Notes"
-    )
+    condition = models.CharField(max_length=100, choices=condition_choices)
+    notes = models.CharField(max_length=100, blank=True, help_text="Notes")
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.serial_number})"
+
+
+class Rental(models.Model):
+    diver = models.ForeignKey(add_diver_models.add_diver, on_delete=models.CASCADE)
+    date_of_rental = models.DateField()
+    date_due = models.DateField()
+    equipment_rental = models.ManyToManyField(Equipment, through="RentalEquipment")
+
+    def __str__(self):
+        return f"{self.diver.name} - Rental #{self.id}"
+
+
+class RentalEquipment(models.Model):
+    rental = models.ForeignKey(Rental, on_delete=models.CASCADE)
+    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
+    rental_price = models.IntegerField()
+    deposit = models.IntegerField()
+    rental_insurance = models.IntegerField()
+    rental_insurance_price = models.IntegerField()
+    rental_total = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.rental} - {self.equipment}"

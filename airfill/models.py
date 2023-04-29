@@ -10,5 +10,6 @@ class airfill(models.Model):
     visual_date = models.IntegerField()
     hydro_date = models.IntegerField()
 
-    def __str__(self):
-        return self.name
+def __str__(self):
+    return f"{self.name} - {self.tank_serial_number}"
+

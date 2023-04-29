@@ -25,5 +25,7 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("airfill/", include("airfill.urls")),
     path("add_diver/", include("add_diver.urls")),
+    path("equipment_rental/", include("equipment_rental.urls")),
+    path("equipment_repair/", include("equipment_repair.urls")),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
 ]

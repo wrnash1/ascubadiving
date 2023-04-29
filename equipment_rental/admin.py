@@ -1,8 +1,18 @@
 from django.contrib import admin
-
+from .models import Equipment, Rental, RentalEquipment
 
 # Register your models here.
+class RentalEquipmentInline(admin.TabularInline):
+    model = RentalEquipment
 
-from .models import equipment_rental
+class RentalAdmin(admin.ModelAdmin):
+    inlines = [
+        RentalEquipmentInline,
+    ]
+    list_display = ('id', 'diver', 'date_of_rental', 'date_due')
 
-admin.site.register(equipment_rental)
+class EquipmentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'serial_number', 'condition')
+
+admin.site.register(Equipment, EquipmentAdmin)
+admin.site.register(Rental, RentalAdmin)
