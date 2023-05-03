@@ -23,28 +23,34 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{% url 'home' %}">ascubadiving</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right"></i> Sign in</a>
-                <a class="nav-link" href="{% url 'logout' %}"><i class="bi bi-box-arrow-left"></i> Sign out</a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">ascubadiving</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <svg class="bi me-2" width="40" height="32">
                 <use xlink:href="#bootstrap" />
             </svg>
             <span class="fs-4">Menu</span>
         </a>
-        <hr>
+        <hr />
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
                 <a href="{% url 'add_diver' %}" class="nav-link active" aria-current="page">
@@ -63,7 +69,7 @@
                 </a>
             </li>
             <li>
-               <a href="{% url 'equipment_rental' %}" class="nav-link text-white">
+                <a href="{% url 'equipment_rental' %}" class="nav-link text-white">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table" />
                     </svg>
@@ -87,12 +93,12 @@
                 </a>
             </li>
         </ul>
-        <hr>
+        <hr />
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="https://ascubadiving.com/cdn/shop/files/Ascubadiving-1_0f0ad404-92ef-4a5f-8c36-1675a2cf7a7e_230x200_crop_center@2x.png?v=1621223156"
-                    alt="ascubadiving" width="32" height="32" class="rounded-circle me-2">
+                    alt="ascubadiving" width="32" height="32" class="rounded-circle me-2" />
                 <strong>{{ user.username }}</strong>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
@@ -100,15 +106,18 @@
                 <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li>
-                    <hr class="dropdown-divider">
+                    <hr class="dropdown-divider" />
                 </li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
             </ul>
         </div>
     </div>
-    <main>
-        {% block content %}
-        {% endblock %}
+    <main class="my-5">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">{% block content %} {% endblock %}</div>
+            <div class="col"></div>
+        </div>
     </main>
     <footer>
         <p>&copy; {% now 'Y' %} ascubadiving, LLC. All rights reserved.</p>
