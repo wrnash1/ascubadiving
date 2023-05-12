@@ -11,6 +11,18 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{% static 'css/sidebars.css' %}">
+    <style>
+        /* Add custom styles for the selected item */
+        .nav-link.active {
+            background-color: #ffcc00;
+            color: black;
+        }
+
+        /* Add custom template color */
+        body {
+            background-color: #f2f2f2;
+        }
+    </style>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -23,6 +35,10 @@
 </head>
 
 <body>
+    <symbol id="home" viewBox="0 0 16 16">
+        <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+    </symbol>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{% url 'home' %}">ascubadiving</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
@@ -47,7 +63,8 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="{% url 'add_diver' %}" class="nav-link active" aria-current="page">
+                <a href="{% url 'add_diver' %}" class="nav-link {% if request.path == '/add_diver/' %}active{% endif %}"
+                    aria-current="page">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#" />
                     </svg>
@@ -55,7 +72,8 @@
                 </a>
             </li>
             <li>
-                <a href="{% url 'airfill' %}" class="nav-link text-white">
+                <a href="{% url 'airfill' %}"
+                    class="nav-link {% if request.path == '/airfill/' %}active{% endif %} text-white">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#speedometer2" />
                     </svg>
@@ -63,7 +81,8 @@
                 </a>
             </li>
             <li>
-               <a href="{% url 'equipment_rental' %}" class="nav-link text-white">
+                <a href="{% url 'equipment_rental' %}"
+                    class="nav-link {% if request.path == '/equipment_rental/' %}active{% endif %} text-white">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table" />
                     </svg>
@@ -71,7 +90,8 @@
                 </a>
             </li>
             <li>
-                <a href="{% url 'equipment_repair' %}" class="nav-link text-white">
+                <a href="{% url 'equipment_repair' %}"
+                    class="nav-link {% if request.path == '/equipment_repair/' %}active{% endif %} text-white">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#grid" />
                     </svg>
@@ -79,7 +99,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="#" class="nav-link {% if request.path == '/shopify/' %}active{% endif %} text-white">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#people-circle" />
                     </svg>
@@ -91,7 +111,7 @@
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://ascubadiving.com/cdn/shop/files/Ascubadiving-1_0f0ad404-92ef-4a5f-8c36-1675a2cf7a7e_230x200_crop_center@2x.png?v=1621223156"
+                <img src="https://ascubadiving.com/cdn/shop/files/Ascubadiving-1_0f0ad404-92ef-4a5f-8c36-1675a2cf7a7e_230x200_crop_center@2x.png"
                     alt="ascubadiving" width="32" height="32" class="rounded-circle me-2">
                 <strong>{{ user.username }}</strong>
             </a>
@@ -118,6 +138,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="{% static 'css/sidebars.js' %}"></script>
+
 </body>
 
 </html>

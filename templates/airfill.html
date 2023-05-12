@@ -1,35 +1,39 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}
+Add Airfill | ascubaDiving
+{% endblock %}
 
 {% block content %}
-  <h1>Airfills</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-  </form>
-  <hr>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Tank Serial Number</th>
-        <th>Visual Date</th>
-        <th>Hydro Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for fill in airfills %}
-        <tr>
-          <td>{{ fill.name }}</td>
-          <td>{{ fill.tank_serial_number }}</td>
-          <td>{{ fill.visual_date }}</td>
-          <td>{{ fill.hydro_date }}</td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="4">No airfills found.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<form method="POST" action="{% url 'airfill' %}">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="name" class="form-label">First and Last Name</label>
+    <input type="text" class="form-control" id="name" name="name" required>
+  </div>
+  <div class="mb-3">
+    <label for="tank_serial_number" class="form-label">Tank Serial Number</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="tank_serial_number" name="tank_serial_number" required>
+      <button type="button" class="btn btn-primary" id="search_serial_number">Search</button>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="visual_date" class="form-label">Visual Date</label>
+    <input type="date" class="form-control" id="visual_date" name="visual_date" required>
+  </div>
+  <div class="mb-3">
+    <label for="hydro_date" class="form-label">Hydro Date</label>
+    <input type="date" class="form-control" id="hydro_date" name="hydro_date" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Diver</button>
+</form>
+
+<script>
+  document.getElementById('search_serial_number').addEventListener('click', function () {
+    var serialNumber = document.getElementById('tank_serial_number').value;
+    // Perform search or other desired actions with the serial number
+    console.log('Searching for serial number:', serialNumber);
+  });
+</script>
 {% endblock %}
