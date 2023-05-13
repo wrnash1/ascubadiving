@@ -15,6 +15,7 @@ class Equipment(models.Model):
     )
     condition = models.CharField(max_length=100, choices=condition_choices)
     notes = models.CharField(max_length=100, blank=True, help_text="Notes")
+    available = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.name} ({self.serial_number})"

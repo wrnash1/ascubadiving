@@ -1,31 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Equipment Rental</h1>
-  <p>Rent scuba diving equipment for your next dive.</p>
+<h1>Equipment Rental</h1>
+<p>Rent scuba diving equipment for your next dive.</p>
 
-  <form method="post">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="item">Item:</label>
-      <select name="item" id="item" class="form-control">
-        <option value="bcd">Buoyancy Compensator Device (BCD)</option>
-        <option value="regulator">Regulator</option>
-        <option value="wetsuit">Wetsuit</option>
-        <option value="dive-computer">Dive Computer</option>
-      </select>
-    </div>
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="item">Item:</label>
+    <select name="item" id="item" class="form-control">
+      <option value="bcd">Buoyancy Compensator Device (BCD)</option>
+      <option value="regulator">Regulator</option>
+      <option value="wetsuit">Wetsuit</option>
+      <option value="dive-computer">Dive Computer</option>
+    </select>
+  </div>
 
-    <div class="form-group">
-      <label for="start-date">Start Date:</label>
-      <input type="date" name="start_date" id="start-date" class="form-control">
-    </div>
+  <div class="form-group">
+    <label for="start-date">Start Date:</label>
+    <input type="date" name="start_date" id="start-date" class="form-control">
+  </div>
 
-    <div class="form-group">
-      <label for="end-date">End Date:</label>
-      <input type="date" name="end_date" id="end-date" class="form-control">
-    </div>
+  <div class="form-group">
+    <label for="end-date">End Date:</label>
+    <input type="date" name="end_date" id="end-date" class="form-control">
+  </div>
 
-    <button type="submit" class="btn btn-primary">Rent</button>
-  </form>
+  <button type="submit" class="btn btn-primary">Rent</button>
+</form>
+
+<script>
+  // Add Bootstrap form-control class to select element
+  var selectElement = document.getElementById('item');
+  selectElement.classList.add('form-control');
+</script>
 {% endblock %}
