@@ -3,6 +3,6 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import add_diver
+from .models import Diver
 
-admin.site.register(add_diver)
+admin.site.register(Diver)

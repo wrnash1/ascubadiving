@@ -5,95 +5,96 @@ Add Diver | ascubaDiving
 {% endblock %}
 
 {% block content %}
-
-<form method="POST" action="{% url 'add_diver' %}">
-    {% csrf_token %}
-    <div class="mb-3">
-        <label for="name" class="form-label">First and Last Name</label>
-        <div class="input-group">
-            <input type="text" class="form-control" id="name" name="name" required>
-            <button type="button" class="btn btn-primary" id="search_name">Search</button>
+<div class="container">
+    <form method="POST" action="{% url 'add_diver' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">First and Last Name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="name" name="name" required>
+                <button type="button" class="btn btn-primary" id="search_name">Search</button>
+            </div>
         </div>
-    </div>
-    <div class="mb-3">
-        <label for="certification_number" class="form-label">Certification Number</label>
-        <input type="text" class="form-control" id="certification_number" name="certification_number" required>
-    </div>
-    <div class="mb-3">
-        <label for="certification_level" class="form-label">Certification Level</label>
-        <select class="form-select" id="certification_level" name="certification_level" required>
-            <option value="OW">Open Water</option>
-            <option value="AOW">Advanced Open Water</option>
-            <option value="Rescue">Rescue</option>
-            <option value="DM">Dive Master</option>
-            <option value="Instructor">Instructor</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="certification_agency" class="form-label">Certification Agency</label>
-        <select class="form-select" id="certification_agency" name="certification_agency" required>
-            <option value="PADI">PADI</option>
-            <option value="SSI">SSI</option>
-            <option value="NAUI">NAUI</option>
-            <option value="SDI">SDI</option>
-            <option value="IANTD">IANTD</option>
-            <option value="CMAS">CMAS</option>
-            <option value="BSAC">BSAC</option>
-            <option value="RAID">RAID</option>
-            <option value="TDI">TDI</option>
-            <option value="GUE">GUE</option>
-            <option value="ANDI">ANDI</option>
-            <option value="NAUI">NAUI</option>
-            <option value="YMCA">YMCA</option>
-            <option value="PDIC">PDIC</option>
-            <option value="NASDS">NASDS</option>
-            <option value="SEI">SEI</option>
-            <option value="SSAC">SSAC</option>
-            <option value="SAA">SAA</option>
-            <option value="CMAS">CMAS</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Date_of_birth" class="form-label">Birthdate</label>
-        <input type="date" class="form-control" id="Date_of_birth" name="Date_of_birth" required>
-    </div>
-    <div class=" mb-3">
-        <label for="Dan_insurance" class="form-label">DAN Insurance</label>
-        <select class="form-select" id="Dan_insurance" name="Dan_insurance" required>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email" required>
-    </div>
-    <div class="mb-3">
-        <label for="phone" class="form-label">Phone</label>
-        <input type="tel" class="form-control" id="phone" name="phone" required>
-    </div>
-    <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input type="text" class="form-control" id="address" name="address" required>
-    </div>
-    <div class="mb-3">
-        <label for="zipcode" class="form-label">Zipcode</label>
-        <input type="text" class="form-control" id="zipcode" name="zipcode" required>
-    </div>
-    <div class="mb-3">
-        <label for="shirt_size" class="form-label">Shirt Size</label>
-        <select class="form-select" id="shirt_size" name="shirt_size" required>
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
-            <option value="XXXL">XXXL</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Diver</button>
-</form>
+        <div class="mb-3">
+            <label for="certification_number" class="form-label">Certification Number</label>
+            <input type="text" class="form-control" id="certification_number" name="certification_number" required>
+        </div>
+        <div class="mb-3">
+            <label for="certification_level" class="form-label">Certification Level</label>
+            <select class="form-select" id="certification_level" name="certification_level" required>
+                <option value="OW">Open Water</option>
+                <option value="AOW">Advanced Open Water</option>
+                <option value="Rescue">Rescue</option>
+                <option value="DM">Dive Master</option>
+                <option value="Instructor">Instructor</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="certification_agency" class="form-label">Certification Agency</label>
+            <select class="form-select" id="certification_agency" name="certification_agency" required>
+                <option value="PADI">PADI</option>
+                <option value="SSI">SSI</option>
+                <option value="NAUI">NAUI</option>
+                <option value="SDI">SDI</option>
+                <option value="IANTD">IANTD</option>
+                <option value="CMAS">CMAS</option>
+                <option value="BSAC">BSAC</option>
+                <option value="RAID">RAID</option>
+                <option value="TDI">TDI</option>
+                <option value="GUE">GUE</option>
+                <option value="ANDI">ANDI</option>
+                <option value="NAUI">NAUI</option>
+                <option value="YMCA">YMCA</option>
+                <option value="PDIC">PDIC</option>
+                <option value="NASDS">NASDS</option>
+                <option value="SEI">SEI</option>
+                <option value="SSAC">SSAC</option>
+                <option value="SAA">SAA</option>
+                <option value="CMAS">CMAS</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Date_of_birth" class="form-label">Birthdate</label>
+            <input type="date" class="form-control" id="Date_of_birth" name="Date_of_birth" required>
+        </div>
+        <div class=" mb-3">
+            <label for="Dan_insurance" class="form-label">DAN Insurance</label>
+            <select class="form-select" id="Dan_insurance" name="Dan_insurance" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="phone" name="phone" required>
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" name="address" required>
+        </div>
+        <div class="mb-3">
+            <label for="zipcode" class="form-label">Zipcode</label>
+            <input type="text" class="form-control" id="zipcode" name="zipcode" required>
+        </div>
+        <div class="mb-3">
+            <label for="shirt_size" class="form-label">Shirt Size</label>
+            <select class="form-select" id="shirt_size" name="shirt_size" required>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Diver</button>
+    </form>
+</div>
 <script>
     document.getElementById('search_name').addEventListener('click', function () {
         var name = document.getElementById('name').value;

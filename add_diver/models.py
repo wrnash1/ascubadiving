@@ -3,7 +3,7 @@ from phone_field import PhoneField
 
 
 # Create your models here.
-class add_diver(models.Model):
+class Diver(models.Model):
     name = models.CharField(max_length=100, help_text="First and Last Name")
     certification_number = models.IntegerField()
     agency = (

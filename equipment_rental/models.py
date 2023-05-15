@@ -1,5 +1,5 @@
 from django.db import models
-from add_diver import models as add_diver_models
+from add_diver.models import Diver
 
 
 class Equipment(models.Model):
@@ -22,7 +22,7 @@ class Equipment(models.Model):
 
 
 class Rental(models.Model):
-    diver = models.ForeignKey(add_diver_models.add_diver, on_delete=models.CASCADE)
+    diver = models.ForeignKey(Diver, on_delete=models.CASCADE)
     date_of_rental = models.DateField()
     date_due = models.DateField()
     equipment_rental = models.ManyToManyField(Equipment, through="RentalEquipment")

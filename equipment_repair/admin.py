@@ -1,8 +1,8 @@
 from django.contrib import admin
+from .models import EquipmentRepair
 
 
-# Register your models here.
+class EquipmentRepairAdmin(admin.ModelAdmin):
+    list_display = ("name", "date_of_repair", "equipment_repaired")
 
-from .models import equipment_repair
-
-admin.site.register(equipment_repair)
+admin.site.register(EquipmentRepair, EquipmentRepairAdmin)
