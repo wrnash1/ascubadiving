@@ -1,68 +1,50 @@
-# from django.shortcuts import render
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.http import JsonResponse
 
-
-# def equipment_rental(request):
-#    return render(request, "equipment_rental.html")
-
-
-from django.shortcuts import render, redirect
-from .models import Equipment, Rental, RentalEquipment
-
+from .models import Rental
+from add_diver.models import Diver
 
 
 def equipment_rental(request):
     if request.method == "POST":
-        # Process equipment rental form submission
-        form_data = request.POST
-        diver_id = form_data.get("diver")
-        start_date = form_data.get("start_date")
-        end_date = form_data.get("end_date")
-        items = form_data.getlist("item[]")
-        rental_prices = form_data.getlist("rental_price[]")
-        deposits = form_data.getlist("deposit[]")
-        rental_insurances = form_data.getlist("rental_insurance[]")
-        rental_insurance_prices = form_data.getlist("rental_insurance_price[]")
-        rental_totals = form_data.getlist("rental_total[]")
+        # Handle the form submission and create rental objects
+        # Update the database accordingly
+        # ...
 
-        diver = add_diver_models.add_diver.objects.get(id=diver_id)
+        # Render the receipt page
+        context = {
+            "rental": rental,  # Pass the rental object to the template
+        }
+        template = get_template("equipment_rental/rental_receipt.html")
+        receipt_html = template.render(context)
 
-        rental = Rental.objects.create(
-            diver=diver, date_of_rental=start_date, date_due=end_date
-        )
+        # Generate PDF from the HTML
+        pdf_file = generate_pdf(receipt_html)
 
-        for (
-            item,
-            rental_price,
-            deposit,
-            rental_insurance,
-            rental_insurance_price,
-            rental_total,
-        ) in zip(
-            items,
-            rental_prices,
-            deposits,
-            rental_insurances,
-            rental_insurance_prices,
-            rental_totals,
-        ):
-            equipment = Equipment.objects.get(id=item)
-            rental_equipment = RentalEquipment.objects.create(
-                rental=rental,
-                equipment=equipment,
-                rental_price=rental_price,
-                deposit=deposit,
-                rental_insurance=rental_insurance,
-                rental_insurance_price=rental_insurance_price,
-                rental_total=rental_total,
-            )
-            equipment.available = False  # Update equipment availability
-            equipment.save()
+        # Return the PDF file as a response for download
+        response = HttpResponse(content_type="application/pdf")
+        response[
+            "Content-Disposition"
+        ] = 'attachment; filename="Equipment_rental_receipt.pdf"'
+        response.write(pdf_file)
+        return response
+    else:
+        # Display the equipment rental form
+        # ...
+        return render(request, "equipment_rental/rental_form.html")
 
-        return redirect("equipment_rental")  # Redirect after successful submission
 
-    equipment = Equipment.objects.filter(available=True)
-    divers = add_diver_models.add_diver.objects.all()
+def generate_pdf(html):
+    pdf_file = BytesIO()
+    pisa.CreatePDF(html, dest=pdf_file)
+    pdf_file.seek(0)
+    return pdf_file.getvalue()
 
-    context = {"equipment": equipment, "divers": divers}
 
-    return render(request, "equipment_rental.html", context)
+def search_divers(request):
+    query = request.GET.get("query", "")
+    divers = Diver.objects.filter(name__icontains=query).values("id", "name")
+    return JsonResponse(list(divers), safe=False)
