@@ -1,6 +1,9 @@
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
+  /* Add custom template color */
+  background-color: #f2f2f2;
+
 }
 
 html {
@@ -100,4 +103,10 @@ main {
 
 .lh-tight {
   line-height: 1.25;
+}
+
+/* Add custom styles for the selected item */
+.nav-link.active {
+  background-color: #ffcc00;
+  color: black;
 }
