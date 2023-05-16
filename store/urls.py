@@ -27,5 +27,7 @@ urlpatterns = [
     path("add_diver/", include("add_diver.urls")),
     path("equipment_rental/", include("equipment_rental.urls")),
     path("equipment_repair/", include("equipment_repair.urls")),
+    path("blending/", include("blending.urls")),
+    path("compressor/", include("compressor.urls")),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
 ]

@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     # 3rd party
     "crispy_forms",
     "crispy_bootstrap5",
+    "blending.apps.BlendingConfig",
+    "compressor.apps.CompressorConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

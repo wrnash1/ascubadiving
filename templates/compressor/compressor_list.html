@@ -1,0 +1,9 @@
+<h1>Compressor List</h1>
+<ul>
+    {% for compressor in compressors %}
+    <li>{{ compressor.name }} - Hours: {{ compressor.hours }} - Last Filter Change: {{ compressor.last_filter_change }}
+        - Last Oil Change: {{ compressor.last_oil_change }}</li>
+    {% empty %}
+    <li>No compressors available.</li>
+    {% endfor %}
+</ul>
