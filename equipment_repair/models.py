@@ -1,10 +1,9 @@
 from django.db import models
-from add_diver import models as add_diver_models
+from add_diver.models import Diver
 
 
-# Create your models here.
-class equipment_repair(models.Model):
-    name = models.ForeignKey(add_diver_models.add_diver, on_delete=models.CASCADE)
+class EquipmentRepair(models.Model):
+    name = models.ForeignKey(Diver, on_delete=models.CASCADE)
     date_of_repair = models.DateField()
     equipment = (
         ("BCD", "BCD"),
@@ -33,8 +32,8 @@ class equipment_repair(models.Model):
         default=False, help_text="May we change bad SPG spool I-rings?"
     )
     bad_hoses = models.BooleanField(default=False, help_text="May we change bad hoses?")
-    Customer_notes = models.TextField(blank=True, help_text="Customer Notes")
-    Technician_notes = models.TextField(blank=True, help_text="Technician Notes")
+    customer_notes = models.TextField(blank=True, help_text="Customer Notes")
+    technician_notes = models.TextField(blank=True, help_text="Technician Notes")
     date_of_pickup = models.DateField(blank=True, null=True)
     date_of_dropoff = models.DateField(blank=True, null=True)
     date_mailed = models.DateField(blank=True, null=True)
@@ -43,4 +42,4 @@ class equipment_repair(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return str(self.name)

@@ -1,0 +1,15 @@
+<h1>Blend List</h1>
+<ul>
+  {% for blend in blends %}
+    <li>{{ blend }}</li>
+    <ul>
+      {% for component in blend.blendcomponent_set.all %}
+        <li>{{ component }}</li>
+      {% empty %}
+        <li>No components for this blend.</li>
+      {% endfor %}
+    </ul>
+  {% empty %}
+    <li>No blends available.</li>
+  {% endfor %}
+</ul>
