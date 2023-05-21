@@ -20,11 +20,6 @@ Things to think about adding in the future.
 
 
 Bugs and error tracking.
-4/27/2023:  Error during template rendering
-In template /home/wrnash/Development/ascubadiving/templates/base.html, error at line 66
-
-Reverse for 'equipment_rental' not found. 'equipment_rental' is not a valid view function or pattern name.
-
-4/26/2023: Hydro change dates in database
+unable to save data to database in add_diver
 
 
