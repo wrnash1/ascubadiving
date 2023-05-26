@@ -2,6 +2,51 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
 
+class GasComposition(models.Model):
+    gas_type = models.CharField(max_length=100)
+    oxygen_percentage = models.DecimalField(max_digits=5, decimal_places=2)
+    # Add any other relevant fields for gas composition
+
+
+class Tank(models.Model):
+    tank_identifier = models.CharField(max_length=100, unique=True)
+    size = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    hydro_dropoff_date = models.DateField(null=True, blank=True)
+    hydro_pickup_date = models.DateField(null=True, blank=True)
+    hydro_passed = models.BooleanField(default=False)
+    # Add any other relevant fields for tank tracking
+
+
+class Airfill(models.Model):
+    tank = models.ForeignKey(Tank, on_delete=models.CASCADE)
+    fill_pressure = models.DecimalField(max_digits=5, decimal_places=2)
+    date = models.DateField()
+    # Add any other relevant fields for airfills
+
+
+class GasBlending(models.Model):
+    tank = models.ForeignKey(Tank, on_delete=models.CASCADE)
+    gas_composition = models.ForeignKey(GasComposition, on_delete=models.CASCADE)
+    blending_method = models.CharField(max_length=100)
+    notes = models.TextField(blank=True)
+    # Add any other relevant fields for gas blending operations
+
+
+class HydrostaticTest(models.Model):
+    tank = models.ForeignKey(Tank, on_delete=models.CASCADE)
+    dropoff_date = models.DateField()
+    pickup_date = models.DateField(null=True, blank=True)
+    result = models.CharField(max_length=100)
+    # Add any other relevant fields for hydrostatic testing
+
+
+class TankInventory(models.Model):
+    tank = models.ForeignKey(Tank, on_delete=models.CASCADE)
+    status = models.CharField(max_length=100)
+    # Add any other relevant fields for tank inventory management
+
+
 class User(AbstractUser):
     groups = models.ManyToManyField(
         Group,
@@ -36,10 +81,14 @@ class Organization(models.Model):
 
 
 class Certification(models.Model):
-    name = models.CharField(max_length=100)
+    diver = models.ForeignKey(User, on_delete=models.CASCADE)
+    certification_level = models.CharField(max_length=100)
+    certification_agency = models.CharField(max_length=100)
+    issue_date = models.DateField()
+    expiration_date = models.DateField()
 
     def __str__(self):
-        return self.name
+        return f"{self.diver.username} - {self.certification_level}"
 
     class Meta:
         verbose_name = "Certification"
@@ -57,103 +106,34 @@ class Customer(models.Model):
     address = models.CharField(max_length=200)
     emergency_contact_name = models.CharField(max_length=100)
     emergency_contact_phone = models.CharField(max_length=20)
-    medical_conditions = models.TextField(default="NKDA")
-    notes = models.TextField(default="None")
-    shopify_user = models.ForeignKey(
-        "ShopifyUser", on_delete=models.SET_NULL, null=True
-    )  # Link to ShopifyUser model
-    certifications = models.ManyToManyField(
-        Certification,
-        verbose_name="certifications",
-        blank=True,
-        related_name="customers",
-    )
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Customer"
-        verbose_name_plural = "Customers"
-
-
-class Airfill(models.Model):
-    dive_details = models.CharField(max_length=200)
-    gas_composition = models.CharField(max_length=200)
-    date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.dive_details
-
-    class Meta:
-        verbose_name = "Airfill"
-        verbose_name_plural = "Airfills"
-
-
-class Compressor(models.Model):
-    shop_id = models.CharField(max_length=100)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
-    hours = models.PositiveIntegerField()
-
-    def __str__(self):
-        return self.shop_id
-
-    class Meta:
-        verbose_name = "Compressor"
-        verbose_name_plural = "Compressors"
-
-
-class Document(models.Model):
-    name = models.CharField(max_length=100)
-    file = models.FileField(upload_to="documents/")
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Document"
-        verbose_name_plural = "Documents"
+    # Add any other relevant fields for customer information
 
 
 class Equipment(models.Model):
     name = models.CharField(max_length=100)
-    rental_price = models.DecimalField(max_digits=10, decimal_places=2)
-    available = models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Equipment"
-        verbose_name_plural = "Equipment"
+    description = models.TextField()
+    # Add any other relevant fields for equipment details
 
 
-class EquipmentRepair(models.Model):
+class EquipmentInventory(models.Model):
     equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    issue_description = models.TextField()
-    repair_status = models.CharField(max_length=100)
-    repair_date = models.DateField(auto_now_add=True)
+    availability = models.BooleanField(default=True)
+    quantity = models.PositiveIntegerField()
+    condition = models.CharField(max_length=100)
+    # Add any other relevant fields for equipment inventory management
 
-    def __str__(self):
-        return f"Repair for {self.equipment.name} - {self.customer.name}"
 
-    class Meta:
-        verbose_name = "Equipment Repair"
-        verbose_name_plural = "Equipment Repairs"
+class DiveSite(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    coordinates = models.CharField(max_length=100)
+    water_conditions = models.CharField(max_length=100)
+    # Add any other relevant fields for dive site information
 
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
-    students = models.ManyToManyField(
-        Customer, through="CourseRegistration", related_name="courses_enrolled"
-    )
-    instructors = models.ManyToManyField(Customer, related_name="courses_instructed")
-    divemaster = models.ForeignKey(
-        Customer, on_delete=models.CASCADE, related_name="courses_divemastered"
-    )
-    google_calendar_url = models.URLField()
+    # Add any other relevant fields for course details
 
     def __str__(self):
         return self.name
@@ -163,24 +143,45 @@ class Course(models.Model):
         verbose_name_plural = "Courses"
 
 
-class CourseRegistration(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=20)
+class Instructor(models.Model):
+    name = models.CharField(max_length=100)
+    courses = models.ManyToManyField(Course)
 
     def __str__(self):
-        return f"Registration for {self.course.name} - {self.customer.name}"
+        return self.name
 
     class Meta:
-        verbose_name = "Course Registration"
-        verbose_name_plural = "Course Registrations"
+        verbose_name = "Instructor"
+        verbose_name_plural = "Instructors"
+
+
+class Divemaster(models.Model):
+    name = models.CharField(max_length=100)
+    courses = models.ManyToManyField(Course)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Divemaster"
+        verbose_name_plural = "Divemasters"
+
+
+class Dive(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=20)
+
+
+class DiveContact(models.Model):
+    dive = models.ForeignKey(Dive, on_delete=models.CASCADE)
+    contact_type = models.CharField(max_length=100)
+    contact_details = models.TextField()
 
 
 class Trip(models.Model):
     name = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
-    date = models.DateField()
-    participants = models.ManyToManyField(Customer)
+    # Add any other relevant fields for trip details
 
     def __str__(self):
         return self.name
@@ -191,41 +192,176 @@ class Trip(models.Model):
 
 
 class StaffSchedule(models.Model):
-    staff_member = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    staff = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Add any other relevant fields for staff schedule
+
+
+class DiveLog(models.Model):
+    dive = models.ForeignKey(Dive, on_delete=models.CASCADE)
+    date = models.DateField()
+    duration = models.DurationField()
+    depth = models.DecimalField(max_digits=5, decimal_places=2)
+    location = models.ForeignKey(DiveSite, on_delete=models.CASCADE)
+    # Add any other relevant fields for dive log
+
+
+class RentalEquipment(models.Model):
+    dive = models.ForeignKey(Dive, on_delete=models.CASCADE)
+    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    # Add any other relevant fields for rental equipment
+
+
+class RepairRequest(models.Model):
+    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
+    description = models.TextField()
+    status = models.CharField(max_length=100)
+    # Add any other relevant fields for repair request
+
+
+class RepairUpdate(models.Model):
+    repair_request = models.ForeignKey(RepairRequest, on_delete=models.CASCADE)
+    update_date = models.DateField()
+    update_description = models.TextField()
+    # Add any other relevant fields for repair update
+
+
+class Document(models.Model):
+    name = models.CharField(max_length=100)
+    file = models.FileField(upload_to="documents/")
+    # Add any other relevant fields for document
+
+
+class CourseSchedule(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    # Add any other relevant fields for course schedule
+
+
+class CourseStudent(models.Model):
+    course_schedule = models.ForeignKey(CourseSchedule, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=20)
+    # Add any other relevant fields for course student
+
+
+class CourseInstructor(models.Model):
+    course_schedule = models.ForeignKey(CourseSchedule, on_delete=models.CASCADE)
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+    # Add any other relevant fields for course instructor
+
+
+class CourseDivemaster(models.Model):
+    course_schedule = models.ForeignKey(CourseSchedule, on_delete=models.CASCADE)
+    divemaster = models.ForeignKey(Divemaster, on_delete=models.CASCADE)
+    # Add any other relevant fields for course divemaster
+
+
+class TripParticipant(models.Model):
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
+    participant = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Add any other relevant fields for trip participant
+
+
+class StaffSchedule(models.Model):
+    staff_member = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
-
-    def __str__(self):
-        return f"Schedule for {self.staff_member.name} - {self.date}"
-
-    class Meta:
-        verbose_name = "Staff Schedule"
-        verbose_name_plural = "Staff Schedules"
+    # Add any other relevant fields for staff schedule
 
 
-class ShopifyUser(models.Model):
-    shopify_id = models.IntegerField(unique=True)
-    name = models.CharField(max_length=255)
-    email = models.EmailField(null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Shopify User"
-        verbose_name_plural = "Shopify Users"
+class Certification(models.Model):
+    diver = models.ForeignKey(User, on_delete=models.CASCADE)
+    level = models.CharField(max_length=100)
+    agency = models.CharField(max_length=100)
+    issue_date = models.DateField()
+    expiration_date = models.DateField()
+    # Add any other relevant fields for certification
 
 
-class Company(models.Model):
+class EquipmentInventory(models.Model):
+    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
+    availability = models.BooleanField(default=True)
+    quantity = models.PositiveIntegerField()
+    condition = models.CharField(max_length=100)
+    # Add any other relevant fields for equipment inventory
+
+
+class DiveSite(models.Model):
     name = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=20)
+    description = models.TextField()
+    location = models.CharField(max_length=100)
+    coordinates = models.CharField(max_length=100)
+    water_conditions = models.TextField()
+    # Add any other relevant fields for dive site
+
+
+class DiveLog(models.Model):
+    diver = models.ForeignKey(User, on_delete=models.CASCADE)
+    dive_site = models.ForeignKey(DiveSite, on_delete=models.CASCADE)
+    date = models.DateField()
+    depth = models.DecimalField(max_digits=5, decimal_places=2)
+    duration = models.DurationField()
+    # Add any other relevant fields for dive log
+
+
+class DiveCondition(models.Model):
+    dive_log = models.ForeignKey(DiveLog, on_delete=models.CASCADE)
+    temperature = models.DecimalField(max_digits=5, decimal_places=2)
+    visibility = models.DecimalField(max_digits=5, decimal_places=2)
+    current = models.CharField(max_length=100)
+    # Add any other relevant fields for dive condition
+
+
+class DiveBuddy(models.Model):
+    dive_log = models.ForeignKey(DiveLog, on_delete=models.CASCADE)
+    buddy = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Add any other relevant fields for dive buddy
+
+
+class DivePhoto(models.Model):
+    dive_log = models.ForeignKey(DiveLog, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to="dive_photos/")
+    caption = models.CharField(max_length=100)
+    # Add any other relevant fields for dive photo
+
+
+class DiveNote(models.Model):
+    dive_log = models.ForeignKey(DiveLog, on_delete=models.CASCADE)
+    note = models.TextField()
+    # Add any other relevant fields for dive note
+
+
+class DiveShop(models.Model):
+    name = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
+    phone = models.CharField(max_length=20)
     email = models.EmailField()
+    # Add any other relevant fields for dive shop
 
-    def __str__(self):
-        return self.name
 
-    class Meta:
-        verbose_name = "Company"
-        verbose_name_plural = "Companies"
+class RentalTransaction(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    rental_date = models.DateField()
+    return_date = models.DateField(null=True, blank=True)
+    # Add any other relevant fields for rental transaction
+
+
+class SalesTransaction(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    sale_date = models.DateField()
+    # Add any other relevant fields for sales transaction
+
+
+class Invoice(models.Model):
+    transaction = models.ForeignKey(SalesTransaction, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    due_date = models.DateField()
+    paid = models.BooleanField(default=False)
+    # Add any other relevant fields for invoice
