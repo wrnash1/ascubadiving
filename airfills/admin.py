@@ -1,3 +1,8 @@
 from django.contrib import admin
+from diveshopmanagement.models import Airfill
 
-# Register your models here.
+
+
+@admin.register(Airfill)
+class AirfillAdmin(admin.ModelAdmin):
+    pass

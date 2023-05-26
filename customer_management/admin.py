@@ -1,11 +1,45 @@
 from django.contrib import admin
-from diveshopmanagement.models import Customer
+from diveshopmanagement.models import (
+    Customer,
+    Organization,
+    Certification,
+    Equipment,
+    EquipmentInventory,
+    DiveSite,
+    DiveLog,
+)
 
 
+@admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'phone', 'address')
-    list_display_links = ('id', 'name')
-    search_fields = ('name', 'email', 'phone')
-    list_per_page = 25
+    pass
 
-admin.site.register(Customer, CustomerAdmin)
+
+@admin.register(Organization)
+class OrganizationAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Certification)
+class CertificationAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Equipment)
+class EquipmentAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(EquipmentInventory)
+class EquipmentInventoryAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(DiveSite)
+class DiveSiteAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(DiveLog)
+class DiveLogAdmin(admin.ModelAdmin):
+    pass
