@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Create Airfill</h1>
+  <form method="POST" action="{% url 'airfills:airfill_create' %}">
+    {% csrf_token %}
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+    <br>
+    <label for="pressure">Pressure:</label>
+    <input type="number" id="pressure" name="pressure" required>
+    <br>
+    <label for="oxygen_percentage">Oxygen Percentage:</label>
+    <input type="number" id="oxygen_percentage" name="oxygen_percentage" required>
+    <br>
+    <button type="submit">Create</button>
+  </form>
+  <br>
+  <a href="{% url 'airfills:airfill_list' %}">Back to Airfill List</a>
+{% endblock %}

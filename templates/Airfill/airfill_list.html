@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Airfill List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Pressure</th>
+        <th>Oxygen Percentage</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for airfill in airfills %}
+        <tr>
+          <td>{{ airfill.id }}</td>
+          <td>{{ airfill.date }}</td>
+          <td>{{ airfill.pressure }}</td>
+          <td>{{ airfill.oxygen_percentage }}</td>
+          <td>
+            <a href="{% url 'airfills:airfill_detail' airfill.id %}">View</a>
+            <a href="{% url 'airfills:airfill_update' airfill.id %}">Edit</a>
+            <a href="{% url 'airfills:airfill_delete' airfill.id %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

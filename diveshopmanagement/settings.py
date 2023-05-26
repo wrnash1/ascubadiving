@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "shopify_integration",
     "customer_management",
     "diveshopmanagement",
+    "airfills",
 ]
 
 MIDDLEWARE = [
