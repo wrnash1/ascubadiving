@@ -1,134 +1,114 @@
-{% comment %} Name of the file: templates/base.html {% endcomment %}
 {% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}ascubadiving{% endblock %}</title>
     <link rel="icon" type="image/png"
-        href="https://ascubadiving.com/cdn/shop/files/Ascubadiving-1_0f0ad404-92ef-4a5f-8c36-1675a2cf7a7e_230x200_crop_center@2x.png?v=1621223156">
+        href="https://ascubadiving.com/cdn/shop/files/Ascubadiving-1_0f0ad404-92ef-4a5f-8c36-1675a2cf7a7e_230x200_crop_center@2x.png">
 
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="{% static 'css/sidebars.css' %}">
+    <!-- Add Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Add your custom CSS files here -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
-    <!-- Bootstrap Icons CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
-        integrity="sha384-U+v9XtjvJt8Wx4wq3pD27+rc/Sj+TQX9HqbvAdYoBIMJ+ogp0q3wx4cBvHk0xWNL" crossorigin="anonymous">
-
+    <!-- Add Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
 <body>
-    <symbol id="home" viewBox="0 0 16 16">
-        <path
-            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
-    </symbol>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{% url 'home' %}">ascubadiving</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right"></i> Sign in</a>
-                <a class="nav-link" href="{% url 'logout' %}"><i class="bi bi-box-arrow-left"></i> Sign out</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <svg class="bi me-2" width="40" height="32">
-                <use xlink:href="#bootstrap" />
-            </svg>
-            <span class="fs-4">Menu</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="{% url 'add_diver' %}" class="nav-link {% if request.path == '/add_diver/' %}active{% endif %}"
-                    aria-current="page">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="{% static 'icons/bootstrap-icons.svg#scuba-diver' %}" />
-                    </svg>
-                    Add New Diver
+    <!-- Add your header content here -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'images/menu-icon.svg' %}" alt="Menu Icon" class="menu-icon">
                 </a>
-            </li>
-            <li>
-                <a href="{% url 'airfill' %}"
-                    class="nav-link {% if request.path == '/airfill/' %}active{% endif %} text-white">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#speedometer2" />
-                    </svg>
-                    Airfills
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'equipment_rental' %}"
-                    class="nav-link {% if request.path == '/equipment_rental/' %}active{% endif %} text-white">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#table" />
-                    </svg>
-                    Equipment Rental
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'equipment_repair' %}"
-                    class="nav-link {% if request.path == '/equipment_repair/' %}active{% endif %} text-white">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#grid" />
-                    </svg>
-                    Equipment Repairs
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link {% if request.path == '/shopify/' %}active{% endif %} text-white">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#people-circle" />
-                    </svg>
-                    shopify
-                </a>
-            </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://ascubadiving.com/cdn/shop/files/Ascubadiving-1_0f0ad404-92ef-4a5f-8c36-1675a2cf7a7e_230x200_crop_center@2x.png"
-                    alt="ascubadiving" width="32" height="32" class="rounded-circle me-2">
-                <strong>{{ user.username }}</strong>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">Change Password</a></li>
-                <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
-            </ul>
-        </div>
-    </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'customer_management:customer_list' %}"><i
+                                    class="bi bi-people"></i> Customers</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="airfillDropdown"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-info-circle"></i> Airfills
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="airfillDropdown">
+                                    <li><a class="dropdown-item" href="#">Nitrox</a></li>
+                                    <li><a class="dropdown-item" href="#">Compressor</a></li>
+                                    <li><a class="dropdown-item" href="#">Gas Caculator</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="equipmentDropdown"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-info-circle"></i> Equipment
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="airfillDropdown">
+                                    <li><a class="dropdown-item" href="#">Rental</a></li>
+                                    <li><a class="dropdown-item" href="#">Repair</a></li>
+                                    <li><a class="dropdown-item" href="#">3</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-palette"></i> Documents</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-palette"></i> Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-palette"></i> Trips</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-palette"></i> Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <span id="currentDateTime" class="nav-link"></span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i>
+                                Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Add your main content here -->
     <main>
-        {% block content %}
-        {% endblock %}
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
     </main>
+
+    <!-- Add your footer content here -->
     <footer>
         <p>&copy; {% now 'Y' %} ascubadiving, LLC. All rights reserved.</p>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    <!-- Add Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script src="{% static 'css/sidebars.js' %}"></script>
 
+    <!-- Add your custom JavaScript code here -->
+    <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/homepage.js' %}"></script>
 </body>
 
 </html>
