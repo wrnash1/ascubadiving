@@ -1,6 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from diveshopmanagement.models import Airfill
+from .forms import AirfillForm
 
+def airfill_create(request):
+    if request.method == 'POST':
+        form = AirfillForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Optionally, perform additional actions or redirect to a success page
+    else:
+        form = AirfillForm()
+    return render(request, 'airfills/airfill_create.html', {'form': form})
 
 def airfill_list(request):
     airfills = Airfill.objects.all()

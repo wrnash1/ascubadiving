@@ -22,6 +22,7 @@ class Airfill(models.Model):
     tank = models.ForeignKey(Tank, on_delete=models.CASCADE)
     fill_pressure = models.DecimalField(max_digits=5, decimal_places=2)
     date = models.DateField()
+    oxygen_percentage = models.DecimalField(max_digits=5, decimal_places=2)
     # Add any other relevant fields for airfills
 
 
