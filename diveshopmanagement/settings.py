@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 from pathlib import Path
+#import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,3 +130,27 @@ AUTHENTICATION_BACKENDS = [
     "social_core.backends.google.GoogleOAuth2",
     "django.contrib.auth.backends.ModelBackend",
 ]
+
+# logging settings
+#LOGGING = {
+#    "version": 1,
+#    "disable_existing_loggers": False,
+#    "handlers": {
+#        "file": {
+#            "level": "DEBUG",
+#            "class": "logging.FileHandler",
+#            "filename": "/home/wrnash/Development/ascubadiving/log/debug.log",
+#            "formatter": "verbose",
+#        },
+#    },
+#    "formatters": {
+#        "verbose": {"format": "%(asctime)s [%(levelname)s] %(module)s %(message)s"},
+#    },
+#    "loggers": {
+#        "": {
+#            "handlers": ["file"],
+#            "level": "DEBUG",
+#            "propagate": True,
+#        },
+#    },
+#}

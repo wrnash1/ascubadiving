@@ -1,0 +1,201 @@
+2023-05-27 02:51:17,543 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 02:53:55,258 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 02:54:54,292 [ERROR] log Internal Server Error: /customer_management/3/
+Traceback (most recent call last):
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/response.py", line 111, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/response.py", line 89, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'customer_edit' not found. 'customer_edit' is not a valid view function or pattern name.
+2023-05-27 02:56:06,417 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/settings.py changed, reloading.
+2023-05-27 02:56:06,707 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 02:56:11,879 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/settings.py changed, reloading.
+2023-05-27 02:56:12,157 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 02:56:14,319 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/settings.py changed, reloading.
+2023-05-27 02:56:14,588 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 02:56:56,320 [WARNING] log Not Found: /airfills/airfill
+2023-05-27 02:57:02,099 [WARNING] log Not Found: /airfills/airfill_list
+2023-05-27 03:01:53,304 [INFO] autoreload /home/wrnash/Development/ascubadiving/airfills/forms.py changed, reloading.
+2023-05-27 03:01:53,605 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:01:58,787 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/settings.py changed, reloading.
+2023-05-27 03:01:59,119 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:04:02,112 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:13:20,491 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/models.py changed, reloading.
+2023-05-27 03:13:20,771 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:13:37,008 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/models.py changed, reloading.
+2023-05-27 03:13:37,336 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:14:49,002 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/models.py changed, reloading.
+2023-05-27 03:14:49,288 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:15:05,374 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:16:13,924 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/models.py changed, reloading.
+2023-05-27 03:16:14,206 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:16:18,385 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/models.py changed, reloading.
+2023-05-27 03:16:18,664 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:16:50,025 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/models.py changed, reloading.
+2023-05-27 03:16:50,347 [INFO] autoreload Watching for file changes with StatReloader
+2023-05-27 03:19:24,347 [ERROR] log Internal Server Error: /customer_management/4/
+Traceback (most recent call last):
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/response.py", line 111, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/response.py", line 89, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'customer_edit' not found. 'customer_edit' is not a valid view function or pattern name.
+2023-05-27 03:19:34,557 [ERROR] log Internal Server Error: /customer_management/4/update/
+Traceback (most recent call last):
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/views/generic/edit.py", line 136, in form_valid
+    return super().form_valid(form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/views/generic/edit.py", line 65, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/http/response.py", line 633, in __init__
+    self["Location"] = iri_to_uri(redirect_to)
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/utils/encoding.py", line 137, in iri_to_uri
+    iri = str(iri)
+          ^^^^^^^^
+  File "/home/wrnash/Development/ascubadiving/.venv/lib64/python3.11/site-packages/django/utils/functional.py", line 155, in __text_cast
+    return func(*self.__args, **self.__kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: reverse() got an unexpected keyword argument 'pk'
+2023-05-27 03:20:24,288 [INFO] autoreload /home/wrnash/Development/ascubadiving/diveshopmanagement/settings.py changed, reloading.

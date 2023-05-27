@@ -3,29 +3,19 @@
 {% block title %}Scuba Gas Blender - Ascubadiving{% endblock %}
 
 {% block content %}
-    <h1>Scuba Gas Blender</h1>
-    <p>Use this page to calculate the gas blending for scuba diving based on the Buhlmann ZHL-16 model.</p>
-    <form>
-        <div class="mb-3">
-            <label for="oxygenInput" class="form-label">Oxygen (%)</label>
-            <input type="number" class="form-control" id="oxygenInput" name="oxygenInput" min="0" max="100" step="0.1" required>
-        </div>
-        <div class="mb-3">
-            <label for="heliumInput" class="form-label">Helium (%)</label>
-            <input type="number" class="form-control" id="heliumInput" name="heliumInput" min="0" max="100" step="0.1" required>
-        </div>
-        <div class="mb-3">
-            <label for="depthInput" class="form-label">Depth (meters)</label>
-            <input type="number" class="form-control" id="depthInput" name="depthInput" min="0" step="0.1" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Calculate</button>
-    </form>
-    {% if gasResult %}
-        <div class="mt-4">
-            <h3>Gas Result:</h3>
-            <p>Oxygen: {{ gasResult.oxygen }}%</p>
-            <p>Helium: {{ gasResult.helium }}%</p>
-            <p>Nitrogen: {{ gasResult.nitrogen }}%</p>
-        </div>
-    {% endif %}
+<h1>Scuba Gas Blender</h1>
+<p>Use this page to calculate the gas blending for scuba diving based on the Buhlmann ZHL-16 model.</p>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+{% if gasResult %}
+<div class="mt-4">
+    <h3>Gas Result:</h3>
+    <p>Oxygen: {{ gasResult.oxygen }}%</p>
+    <p>Helium: {{ gasResult.helium }}%</p>
+    <p>Nitrogen: {{ gasResult.nitrogen }}%</p>
+</div>
+{% endif %}
 {% endblock %}

@@ -232,107 +232,28 @@ class Document(models.Model):
     file = models.FileField(upload_to="documents/")
     # Add any other relevant fields for document
 
-
 class CourseSchedule(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    # Add any other relevant fields for course schedule
-
-
-class CourseStudent(models.Model):
-    course_schedule = models.ForeignKey(CourseSchedule, on_delete=models.CASCADE)
-    student = models.ForeignKey(User, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=20)
-    # Add any other relevant fields for course student
-
-
-class CourseInstructor(models.Model):
-    course_schedule = models.ForeignKey(CourseSchedule, on_delete=models.CASCADE)
-    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
-    # Add any other relevant fields for course instructor
-
-
-class CourseDivemaster(models.Model):
-    course_schedule = models.ForeignKey(CourseSchedule, on_delete=models.CASCADE)
-    divemaster = models.ForeignKey(Divemaster, on_delete=models.CASCADE)
-    # Add any other relevant fields for course divemaster
-
-
-class TripParticipant(models.Model):
-    trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
-    participant = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Add any other relevant fields for trip participant
-
-
-class StaffSchedule(models.Model):
-    staff_member = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
-    # Add any other relevant fields for staff schedule
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+    location = models.ForeignKey(DiveSite, on_delete=models.CASCADE)
+    # Add any other relevant fields for course schedule
 
 
 class Certification(models.Model):
-    diver = models.ForeignKey(User, on_delete=models.CASCADE)
-    level = models.CharField(max_length=100)
-    agency = models.CharField(max_length=100)
-    issue_date = models.DateField()
-    expiration_date = models.DateField()
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_earned = models.DateField()
     # Add any other relevant fields for certification
 
 
-class EquipmentInventory(models.Model):
-    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
-    availability = models.BooleanField(default=True)
-    quantity = models.PositiveIntegerField()
-    condition = models.CharField(max_length=100)
-    # Add any other relevant fields for equipment inventory
-
-
-class DiveSite(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    location = models.CharField(max_length=100)
-    coordinates = models.CharField(max_length=100)
-    water_conditions = models.TextField()
-    # Add any other relevant fields for dive site
-
-
-class DiveLog(models.Model):
-    diver = models.ForeignKey(User, on_delete=models.CASCADE)
-    dive_site = models.ForeignKey(DiveSite, on_delete=models.CASCADE)
-    date = models.DateField()
-    depth = models.DecimalField(max_digits=5, decimal_places=2)
-    duration = models.DurationField()
-    # Add any other relevant fields for dive log
-
-
-class DiveCondition(models.Model):
-    dive_log = models.ForeignKey(DiveLog, on_delete=models.CASCADE)
-    temperature = models.DecimalField(max_digits=5, decimal_places=2)
-    visibility = models.DecimalField(max_digits=5, decimal_places=2)
-    current = models.CharField(max_length=100)
-    # Add any other relevant fields for dive condition
-
-
-class DiveBuddy(models.Model):
-    dive_log = models.ForeignKey(DiveLog, on_delete=models.CASCADE)
-    buddy = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Add any other relevant fields for dive buddy
-
-
-class DivePhoto(models.Model):
-    dive_log = models.ForeignKey(DiveLog, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to="dive_photos/")
-    caption = models.CharField(max_length=100)
-    # Add any other relevant fields for dive photo
-
-
-class DiveNote(models.Model):
-    dive_log = models.ForeignKey(DiveLog, on_delete=models.CASCADE)
-    note = models.TextField()
-    # Add any other relevant fields for dive note
+class DiveReview(models.Model):
+    dive = models.ForeignKey(Dive, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField()
+    comments = models.TextField()
+    # Add any other relevant fields for dive review
 
 
 class DiveShop(models.Model):
@@ -344,7 +265,7 @@ class DiveShop(models.Model):
 
 
 class RentalTransaction(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     rental_date = models.DateField()
@@ -353,7 +274,7 @@ class RentalTransaction(models.Model):
 
 
 class SalesTransaction(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     sale_date = models.DateField()
@@ -366,3 +287,17 @@ class Invoice(models.Model):
     due_date = models.DateField()
     paid = models.BooleanField(default=False)
     # Add any other relevant fields for invoice
+
+
+class Payment(models.Model):
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_date = models.DateField()
+    # Add any other relevant fields for payment
+
+
+class DiveReservation(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    dive = models.ForeignKey(Dive, on_delete=models.CASCADE)
+    reservation_date = models.DateField()
+    # Add any other relevant fields for dive reservation
