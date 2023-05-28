@@ -50,6 +50,9 @@ class CustomerDeleteView(DeleteView):
     template_name = "customer_management/customer_confirm_delete.html"
     success_url = reverse_lazy("customer_management:customer_list")
 
+    def get_success_url(self) -> str:
+        return self.success_url
+
 
 class CustomerEditView(UpdateView):
     model = Customer
