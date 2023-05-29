@@ -12,6 +12,17 @@ from diveshopmanagement.models import (
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
+    list_display = [
+        "name",
+        "birthdate",
+        "organization",
+        "employee",
+        "email",
+        "phone",
+        "address",
+        "emergency_contact_name",
+        "emergency_contact_phone",
+    ]
     pass
 
 
