@@ -232,6 +232,7 @@ class Document(models.Model):
     file = models.FileField(upload_to="documents/")
     # Add any other relevant fields for document
 
+
 class CourseSchedule(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     date = models.DateField()
@@ -240,13 +241,6 @@ class CourseSchedule(models.Model):
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
     location = models.ForeignKey(DiveSite, on_delete=models.CASCADE)
     # Add any other relevant fields for course schedule
-
-
-class Certification(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    student = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_earned = models.DateField()
-    # Add any other relevant fields for certification
 
 
 class DiveReview(models.Model):
