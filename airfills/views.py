@@ -44,3 +44,4 @@ def airfill_delete(request, pk):
         airfill.delete()
         return redirect("airfills:airfill_list")
     return render(request, "airfills/airfill_confirm_delete.html", {"airfill": airfill})
+

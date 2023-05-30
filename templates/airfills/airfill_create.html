@@ -4,6 +4,7 @@
 <h1>Create Airfill</h1>
 <form method="POST" action="{% url 'airfills:airfill_create' %}">
   {% csrf_token %}
+  {{ form.as_p }}
 
   <div class="form-group">
     <label for="date">Date:</label>
