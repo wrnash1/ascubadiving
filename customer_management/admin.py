@@ -2,7 +2,11 @@ from django.contrib import admin
 from diveshopmanagement.models import Customer, Organization, Certification
 
 
-@admin.register(Customer)
+class CertificationInline(admin.TabularInline):
+    model = Certification
+    extra = 1
+
+
 class CustomerAdmin(admin.ModelAdmin):
     list_display = (
         "name",
@@ -12,7 +16,7 @@ class CustomerAdmin(admin.ModelAdmin):
         "t_shirt_size",
         "notes",
     )
-    list_filter = ("organization__name", "level__certification_level")
+    list_filter = ("organization__name", "certification_level")
     search_fields = ("name",)
 
     def get_organization(self, obj):
@@ -25,22 +29,31 @@ class CustomerAdmin(admin.ModelAdmin):
 
     get_level.short_description = "Level"
 
+    inlines = [CertificationInline]
 
-@admin.register(Organization)
+
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ("name",)
     search_fields = ("name",)
 
 
-@admin.register(Certification)
 class CertificationAdmin(admin.ModelAdmin):
-    list_display = ("diver", "certification_level", "certification_agency")
+    list_display = ("diver", "get_certification_level", "certification_agency")
     list_filter = ("certification_agency",)
     search_fields = ("diver__username",)
 
     def diver(self, obj):
         return obj.diver.username
 
+    def get_certification_level(self, obj):
+        return obj.diver.level.certification_level if obj.diver.level else None
+
+    get_certification_level.short_description = "Certification Level"
+
+
+admin.site.register(Customer, CustomerAdmin)
+admin.site.register(Organization, OrganizationAdmin)
+admin.site.register(Certification, CertificationAdmin)
 
 admin.site.site_header = "Dive Shop Management Admin"
 admin.site.site_title = "Dive Shop Management"

@@ -1,21 +1,24 @@
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
 from django.db import models
 
-# accounts section
+User = get_user_model()
+
+# Rest of the code...
 
 
 class User(AbstractUser):
     groups = models.ManyToManyField(
-        Group,
+        "auth.Group",
         verbose_name="groups",
         blank=True,
-        related_name="diveshopmanagement_user_set",
+        related_name="diveshopmanagement_users",
     )
     user_permissions = models.ManyToManyField(
-        Permission,
+        "auth.Permission",
         verbose_name="user permissions",
         blank=True,
-        related_name="diveshopmanagement_user_set",
+        related_name="diveshopmanagement_users",
     )
 
     def __str__(self):
@@ -38,14 +41,17 @@ class Organization(models.Model):
 
 
 class Certification(models.Model):
-    diver = models.ForeignKey(User, on_delete=models.CASCADE)
-    certification_level = models.CharField(max_length=100)
+    customer = models.ForeignKey(
+        "diveshopmanagement.Customer",
+        on_delete=models.CASCADE,
+        related_name="certifications",
+    )
     certification_agency = models.CharField(max_length=100)
     issue_date = models.DateField()
     expiration_date = models.DateField()
 
     def __str__(self):
-        return f"{self.diver.username} - {self.certification_level}"
+        return f"{self.customer.name} - {self.certification_agency}"
 
     class Meta:
         verbose_name = "Certification"
@@ -53,6 +59,8 @@ class Certification(models.Model):
 
 
 class Level(models.Model):
+    name = models.CharField(max_length=100)  # Add a field for the level name
+
     CERTIFICATION_LEVELS = (
         ("OW", "Open Water"),
         ("AOW", "Advanced Open Water"),
@@ -69,21 +77,8 @@ class Level(models.Model):
         ("CIT", "Course Director Trainer"),
     )
 
-    certification_level = models.CharField(max_length=50, choices=CERTIFICATION_LEVELS)
-
     def __str__(self):
-        return self.get_certification_level_display()
-
-    employee = models.BooleanField(default=False)
-    picture = models.ImageField(upload_to="customer_images/", null=True, blank=True)
-    email = models.EmailField()
-    phone = models.CharField(max_length=20)
-    address = models.CharField(max_length=200)
-    emergency_contact_name = models.CharField(max_length=100, null=True, blank=True)
-    emergency_contact_phone = models.CharField(max_length=20, null=True, blank=True)
-    medical_conditions = models.TextField(blank=True)
-    dan_insurance = models.BooleanField(default=False)
-    dan_insurance_number = models.CharField(max_length=100, null=True, blank=True)
+        return self.name
 
 
 class Customer(models.Model):
@@ -96,18 +91,30 @@ class Customer(models.Model):
     )
 
     name = models.CharField(max_length=100)
+    picture = models.ImageField(upload_to="customer_images/", null=True, blank=True)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    address = models.CharField(max_length=200)
     birthdate = models.DateField()
     organization = models.ForeignKey(Organization, on_delete=models.SET_NULL, null=True)
-    level = models.ForeignKey(Level, on_delete=models.SET_NULL, null=True)
+    certification_level = models.CharField(
+        max_length=50, choices=Level.CERTIFICATION_LEVELS
+    )
     t_shirt_size = models.CharField(max_length=10, choices=T_SHIRT_SIZES)
     notes = models.TextField(blank=True)
-    # Add any other relevant fields for customer information
 
     def __str__(self):
         return self.name
 
+    employee = models.BooleanField(default=False)
+    emergency_contact_name = models.CharField(max_length=100, null=True, blank=True)
+    emergency_contact_phone = models.CharField(max_length=20, null=True, blank=True)
+    medical_conditions = models.TextField(blank=True)
+    dan_insurance = models.BooleanField(default=False)
+    dan_insurance_number = models.CharField(max_length=100, null=True, blank=True)
 
-# Dive shop name for template.
+    def __str__(self):
+        return self.get_certification_level_display()
 
 
 class DiveShop(models.Model):
@@ -115,16 +122,17 @@ class DiveShop(models.Model):
     address = models.CharField(max_length=200)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
-    # Add any other relevant fields for dive shop
 
-
-# Airfills Sections
+    def __str__(self):
+        return self.name
 
 
 class GasComposition(models.Model):
     gas_type = models.CharField(max_length=100)
     oxygen_percentage = models.DecimalField(max_digits=5, decimal_places=2)
-    # Add any other relevant fields for gas composition
+
+    def __str__(self):
+        return self.gas_type
 
 
 class Tank(models.Model):
@@ -134,7 +142,9 @@ class Tank(models.Model):
     hydro_dropoff_date = models.DateField(null=True, blank=True)
     hydro_pickup_date = models.DateField(null=True, blank=True)
     hydro_passed = models.BooleanField(default=False)
-    # Add any other relevant fields for tank tracking
+
+    def __str__(self):
+        return self.tank_identifier
 
 
 class Airfill(models.Model):
@@ -142,7 +152,9 @@ class Airfill(models.Model):
     fill_pressure = models.DecimalField(max_digits=5, decimal_places=2)
     date = models.DateField()
     oxygen_percentage = models.DecimalField(max_digits=5, decimal_places=2)
-    # Add any other relevant fields for airfills
+
+    def __str__(self):
+        return f"{self.tank} - {self.date}"
 
 
 class GasBlending(models.Model):
@@ -150,7 +162,9 @@ class GasBlending(models.Model):
     gas_composition = models.ForeignKey(GasComposition, on_delete=models.CASCADE)
     blending_method = models.CharField(max_length=100)
     notes = models.TextField(blank=True)
-    # Add any other relevant fields for gas blending operations
+
+    def __str__(self):
+        return f"{self.tank} - {self.gas_composition}"
 
 
 class HydrostaticTest(models.Model):
@@ -158,10 +172,14 @@ class HydrostaticTest(models.Model):
     dropoff_date = models.DateField()
     pickup_date = models.DateField(null=True, blank=True)
     result = models.CharField(max_length=100)
-    # Add any other relevant fields for hydrostatic testing
+
+    def __str__(self):
+        return f"{self.tank} - {self.dropoff_date}"
 
 
 class TankInventory(models.Model):
     tank = models.ForeignKey(Tank, on_delete=models.CASCADE)
     status = models.CharField(max_length=100)
-    # Add any other relevant fields for tank inventory management
+
+    def __str__(self):
+        return f"{self.tank} - {self.status}"
