@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = "airfills"
@@ -10,3 +10,4 @@ urlpatterns = [
     path("<int:pk>/update/", views.airfill_update, name="airfill_update"),
     path("<int:pk>/delete/", views.airfill_delete, name="airfill_delete"),
 ]
+

@@ -3,6 +3,7 @@ from django.urls import include, path
 from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", accounts_views.home, name="home"),

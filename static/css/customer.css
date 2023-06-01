@@ -27,4 +27,18 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-/* Additional styles as needed */
+.container-image {
+    width: 100px;
+    /* Adjust the width to your desired standard size */
+    height: auto;
+    /* The height will adjust proportionally based on the image's aspect ratio */
+    margin-bottom: 20px;
+    /* Optional: Add some spacing below the image */
+}
+
+.standard-image {
+    max-width: 100%;
+    /* Ensure the image doesn't exceed the container's width */
+    height: auto;
+    /* Allow the image to scale proportionally */
+}

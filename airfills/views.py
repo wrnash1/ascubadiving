@@ -45,3 +45,14 @@ def airfill_delete(request, pk):
         return redirect("airfills:airfill_list")
     return render(request, "airfills/airfill_confirm_delete.html", {"airfill": airfill})
 
+
+#def tank_create(request):
+#    tank_create = Tank.objects.create(
+#        tank_identifier=tank.tank_identifier,
+#        size=tank.size,
+#        location=tank.location,
+#        hydro_dropoff_date=tank.hydro_dropoff_date,
+#        hydro_pickup_date=tank.hydro_pickup_date,
+#        hydro_passed=tank.hydro_passed,
+#    )
+#    return render(request, "airfills/tank_create.html")

@@ -132,6 +132,11 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
+#Media files settings
+MEDIA_URL = "/media/"
+media_root = os.path.join(BASE_DIR, "media")
+
+
 # logging settings
 # LOGGING = {
 #    "version": 1,

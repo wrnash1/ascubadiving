@@ -1,32 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Create Airfill</h1>
-<form method="POST" action="{% url 'airfills:airfill_create' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
+  <h1>Create Airfill</h1>
+  <form method="POST" action="{% url 'airfills:airfill_create' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
 
-  <div class="form-group">
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date" required>
-  </div>
-
-  <div class="form-group">
-    <label for="fill_pressure">Pressure:</label>
-    <input type="number" id="fill_pressure" name="fill_pressure" value="3000" required>
-  </div>
-
-  <div class="form-group">
-    <label for="oxygen_percentage">Oxygen Percentage:</label>
-    <input type="number" id="oxygen_percentage" name="oxygen_percentage" value="21" required>
-    {% if oxygen_percentage > 42 %}
-    <div class="alert alert-danger">Oxygen percentage exceeds 42%.</div>
+    <!-- Tank Fields -->
+    {% if form.tank.value is None %}
+      <p>No tank selected. <a href="{% url 'tanks:tank_create' %}" class="btn btn-primary">Add Tank</a></p>
+    {% else %}
+      <div class="form-group">
+        <label for="{{ form.tank.id_for_label }}">Tank Identifier:</label>
+        {{ form.tank }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.tank.size.id_for_label }}">Tank Size:</label>
+        {{ form.tank.size }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.tank.location.id_for_label }}">Tank Location:</label>
+        {{ form.tank.location }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.tank.hydro_dropoff_date.id_for_label }}">Hydro Dropoff Date:</label>
+        {{ form.tank.hydro_dropoff_date }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.tank.hydro_pickup_date.id_for_label }}">Hydro Pickup Date:</label>
+        {{ form.tank.hydro_pickup_date }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.tank.hydro_passed.id_for_label }}">Hydro Passed:</label>
+        {{ form.tank.hydro_passed }}
+      </div>
     {% endif %}
-  </div>
 
-  <button type="submit" class="btn btn-primary">Create</button>
-</form>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
 
-<br>
-<a href="{% url 'airfills:airfill_list' %}" class="btn btn-secondary">Back to Airfill List</a>
+  <br>
+  <a href="{% url 'airfills:airfill_list' %}" class="btn btn-secondary">Back to Airfill List</a>
 {% endblock %}
