@@ -1,0 +1,24 @@
+{% extends 'compressor/base.html' %}
+
+{% block content %}
+    <h2>Compressor Timer</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {% if compressor.date_turned_on %}
+                <p>Compressor is running since: {{ compressor.date_turned_on }}</p>
+                <button type="submit" class="btn btn-danger" name="stop">Stop Compressor</button>
+            {% else %}
+                <button type="submit" class="btn btn-success" name="start">Start Compressor</button>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="minutes">Total Minutes:</label>
+            <input type="text" class="form-control" id="minutes" name="minutes" value="{{ compressor.minutes }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes:</label>
+            <textarea class="form-control" id="notes" name="notes" rows="3">{{ compressor.notes }}</textarea>
+        </div>
+    </form>
+{% endblock %}

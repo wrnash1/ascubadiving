@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Alerts</h2>
+{% if compressor.minutes >= 900 %}
+<div class="alert alert-warning" role="alert">
+    Air filters need to be changed!
+    <button onclick="location.href='{% url 'compressor:reset_filters' %}'" class="btn btn-primary">Reset
+        Filters</button>
+</div>
+{% endif %}
+
+{% if compressor.minutes >= 3000 %}
+<div class="alert alert-danger" role="alert">
+    Oil needs to be changed!
+    <button onclick="location.href='{% url 'compressor:reset_oil' %}'" class="btn btn-primary">Reset Oil</button>
+</div>
+{% endif %}
+{% endblock %}

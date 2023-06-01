@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Tank List</h2>
+  <ul>
+    {% for tank in tanks %}
+      <li>{{ tank.name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

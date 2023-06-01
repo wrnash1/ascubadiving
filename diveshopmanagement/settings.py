@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "customer_management",
     "diveshopmanagement",
     "airfills",
+    "tanks",
 ]
 
 MIDDLEWARE = [
@@ -132,7 +133,7 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
-#Media files settings
+# Media files settings
 MEDIA_URL = "/media/"
 media_root = os.path.join(BASE_DIR, "media")
 
