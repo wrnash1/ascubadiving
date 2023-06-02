@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1>Compressor Not Found</h1>
+        <p>The requested compressor does not exist.</p>
+        <a href="{% url 'compressor:create_compressor' %}" class="btn btn-primary mt-3">Create Compressor</a>
+    </div>
+{% endblock %}

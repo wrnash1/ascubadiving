@@ -1,7 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
-from .models import Compressor, MaintenanceAlert
+from diveshopmanagement.models import Compressor, MaintenanceAlert
 
 
 @receiver(post_save, sender=Compressor)

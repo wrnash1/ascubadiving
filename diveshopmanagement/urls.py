@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
+from compressor import urls as compressor_urls
 
 
 urlpatterns = [

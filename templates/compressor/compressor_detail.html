@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Compressor Details</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h2>Compressor Information</h2>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Start Time:</strong> {{ compressor.start_time }}</li>
+                <li class="list-group-item"><strong>Minutes:</strong> {{ compressor.minutes }}</li>
+                <li class="list-group-item"><strong>Notes:</strong> {{ compressor.notes }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12 text-end">
+            <a href="{% url 'customer_management:customer_update' compressor.pk %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'customer_management:customer_delete' compressor.pk %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
