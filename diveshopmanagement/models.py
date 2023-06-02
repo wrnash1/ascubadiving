@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils import timezone
 
 User = get_user_model()
 
@@ -189,25 +190,25 @@ class TankInventory(models.Model):
 class Compressor(models.Model):
     minutes = models.IntegerField(default=0)
     date_turned_on = models.DateTimeField(null=True, blank=True)
-    notes = models.TextField(blank=True)
-
-    def __str__(self):
-        return f"Compressor ({self.id})"
 
     def check_air_filter_alert(self):
-        if self.minutes >= 900:
-            return True
-        return False
-
-    def reset_air_filter(self):
-        self.minutes = 0
-        self.save()
+        return self.minutes == 900
 
     def check_oil_change_alert(self):
-        if self.minutes >= 3000:
-            return True
-        return False
+        return self.minutes == 3000
 
-    def reset_oil_change(self):
-        self.minutes = 0
-        self.save()
+
+class MaintenanceAlert(models.Model):
+    AIR_FILTERS = "air_filters"
+    OIL_CHANGE = "oil_change"
+    ALERT_TYPES = [
+        (AIR_FILTERS, "Air Filters"),
+        (OIL_CHANGE, "Oil Change"),
+    ]
+
+    compressor = models.ForeignKey(Compressor, on_delete=models.CASCADE)
+    alert_type = models.CharField(max_length=20, choices=ALERT_TYPES)
+    alert_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.alert_type} Alert for Compressor {self.compressor.id}"

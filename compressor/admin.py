@@ -1,4 +1,4 @@
 from django.contrib import admin
+from diveshopmanagement.models import Compressor
 
-
-# Register your models here.
+admin.site.register(Compressor)

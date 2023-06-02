@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "diveshopmanagement",
     "airfills",
     "tanks",
+    "compressor",
 ]
 
 MIDDLEWARE = [
@@ -98,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization settings
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
 
@@ -136,29 +137,3 @@ AUTHENTICATION_BACKENDS = [
 # Media files settings
 MEDIA_URL = "/media/"
 media_root = os.path.join(BASE_DIR, "media")
-
-
-# logging settings
-# LOGGING = {
-#    "version": 1,
-#    "disable_existing_loggers": False,
-#    "handlers": {
-#        "file": {
-#            "level": "DEBUG",
-#            "class": "logging.FileHandler",
-#            "filename": "/home/wrnash/Development/ascubadiving/log/debug.log",
-#            "formatter": "verbose",
-#        },
-#    },
-#    "formatters": {
-#        "verbose": {"format": "%(asctime)s [%(levelname)s] %(module)s %(message)s"},
-#    },
-#    "loggers": {
-#        "": {
-#            "handlers": ["file"],
-#            "level": "DEBUG",
-#            "propagate": True,
-#        },
-#    },
-# }
-ADMINS = (("Bill Nash", "bill@ascubadiving.com"),)

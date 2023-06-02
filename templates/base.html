@@ -45,8 +45,15 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="airfillDropdown">
                                     <li><a class="dropdown-item" href="#">Gas Blender</a></li>
-                                    <li><a class="dropdown-item"
-                                        href="{% url 'compressor:compressor_detail' %}">Compressor</a></li>
+                                    <li>
+                                        {% if compressor %}
+                                        <a class="dropdown-item"
+                                            href="{% url 'compressor:compressor_detail' compressor.id %}">Compressor</a>
+                                        {% else %}
+                                        <!-- Handle the case when the compressor is not available -->
+                                        <a class="dropdown-item" href="#">Compressor</a>
+                                        {% endif %}
+                                    </li>
                                     <li><a class="dropdown-item" href="{% url 'airfills:airfill_list' %}">Tank Fill</a>
                                     </li>
                                 </ul>
