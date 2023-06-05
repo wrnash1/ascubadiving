@@ -3,6 +3,7 @@ from django.urls import include, path
 from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
 from compressor import urls as compressor_urls
+from gasblending import views as gasblending_views
 
 
 urlpatterns = [
@@ -12,6 +13,7 @@ urlpatterns = [
     path("airfills/", include("airfills.urls")),
     path("customer_management/", include("customer_management.urls")),
     path("tanks/", include("tanks.urls")),
+    path("gasblending/", include("gasblending.urls")),
     path("compressor/", include(compressor_urls)),
     path(
         "logout/",

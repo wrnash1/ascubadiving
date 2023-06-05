@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "airfills",
     "tanks",
     "compressor",
+    "gasblending",
 ]
 
 MIDDLEWARE = [

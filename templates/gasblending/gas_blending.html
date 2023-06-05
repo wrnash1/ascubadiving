@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gas Blending</title>
+</head>
+<body>
+    <h1>Gas Blending</h1>
+
+    <form method="POST" action="{% url 'gas_blending' %}">
+        {% csrf_token %}
+        <label for="target_ppo2">Target PPO2:</label>
+        <input type="number" step="0.01" name="target_ppo2" required><br><br>
+
+        <label for="current_o2">Current Oxygen (%):</label>
+        <input type="number" step="0.01" name="current_o2" required><br><br>
+
+        <label for="current_n2">Current Nitrogen (%):</label>
+        <input type="number" step="0.01" name="current_n2" required><br><br>
+
+        <label for="current_he">Current Helium (%):</label>
+        <input type="number" step="0.01" name="current_he" required><br><br>
+
+        <input type="submit" value="Blend Gas">
+    </form>
+
+    {% if blended_mix %}
+        <h2>Blended Gas Mix:</h2>
+        <p>Oxygen: {{ blended_mix.o2 }}%</p>
+        <p>Nitrogen: {{ blended_mix.n2 }}%</p>
+        <p>Helium: {{ blended_mix.he }}%</p>
+    {% endif %}
+</body>
+</html>

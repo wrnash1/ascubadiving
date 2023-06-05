@@ -212,3 +212,14 @@ class MaintenanceAlert(models.Model):
 
     def __str__(self):
         return f"{self.alert_type} Alert for Compressor {self.compressor.id}"
+
+
+class GasBlendingCalculation(models.Model):
+    target_ppo2 = models.FloatField()
+    current_o2 = models.FloatField()
+    current_n2 = models.FloatField()
+    current_he = models.FloatField()
+    result_o2 = models.FloatField()
+    result_n2 = models.FloatField()
+    result_he = models.FloatField()
+    timestamp = models.DateTimeField(auto_now_add=True)
