@@ -1,8 +1,8 @@
 from django.urls import path
 from .views import gas_blending_view
 
-app_name = 'gasblending'
+app_name = "gasblending"
 
 urlpatterns = [
-    path('gas-blending/', gas_blending_view, name='gas_blending'),
+    path("gasblending/", gas_blending_view, name="gas_blending"),
 ]
