@@ -15,6 +15,7 @@ urlpatterns = [
     path("tanks/", include("tanks.urls")),
     path("gasblending/", include("gasblending.urls")),
     path("compressor/", include(compressor_urls)),
+    path("rental/", include("rental.urls")),
     path(
         "logout/",
         auth_views.LogoutView.as_view(template_name="accounts/logout.html"),

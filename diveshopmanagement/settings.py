@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "tanks",
     "compressor",
     "gasblending",
+    "rental",
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,6 @@
 import math
 
+
 class BuhlmannGasBlender:
     def __init__(self):
         self.compartments = {
