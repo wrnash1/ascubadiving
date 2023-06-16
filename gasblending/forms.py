@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gas Blending{% endblock %}
+{% block content %}
+
 <form method="post" action="{% url 'gasblending:gas_blending' %}">
   {% csrf_token %}
   <div class="form-group">
