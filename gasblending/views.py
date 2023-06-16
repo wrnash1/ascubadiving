@@ -1,6 +1,5 @@
-# gasblending/views.py
-
 from django.shortcuts import render
+from gasblending.buhlmann import BuhlmannGasBlender
 
 
 def gas_blending_view(request):
@@ -12,11 +11,17 @@ def gas_blending_view(request):
         helium = float(request.POST.get("helium", 0))
         target_ppo2 = float(request.POST.get("target_ppo2", 0))
 
-        # Calculate the PSI values based on the gas percentages and target ppo2
-        total_gas_percentage = current_o2 + current_n2
-        oxygen_psi = (oxygen / total_gas_percentage) * target_ppo2
-        nitrogen_psi = (nitrogen / total_gas_percentage) * target_ppo2
-        helium_psi = (helium / total_gas_percentage) * target_ppo2
+        blender = BuhlmannGasBlender()
+        current_mix = {
+            "o2": current_o2,
+            "n2": current_n2,
+            "he": 0,
+        }
+        blended_mix = blender.blend_gas(target_ppo2, current_mix)
+
+        oxygen_psi = oxygen / 100 * blended_mix["o2"]
+        nitrogen_psi = nitrogen / 100 * blended_mix["n2"]
+        helium_psi = helium / 100 * blended_mix["he"]
 
         return render(
             request,
