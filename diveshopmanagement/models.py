@@ -5,9 +5,6 @@ from django.utils import timezone
 
 User = get_user_model()
 
-# Rest of the code...
-
-
 class User(AbstractUser):
     groups = models.ManyToManyField(
         "auth.Group",
@@ -227,8 +224,6 @@ class GasBlendingCalculation(models.Model):
 
 
 # rental models
-# Add the following code at the end of models.py
-
 class Rental(models.Model):
     item = models.CharField(max_length=100)
     customer = models.ForeignKey(

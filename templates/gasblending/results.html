@@ -1,14 +1,101 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="container">
     <h1>Gas Blending Results</h1>
+    <p>Target pPO2: {{ target_ppo2 }}</p>
+    <p>Current Oxygen Percentage: {{ current_o2 }}</p>
+    <p>Current Nitrogen Percentage: {{ current_n2 }}</p>
+    <p>Current Helium Percentage: {{ current_he }}</p>
+    <h2>Gas Mixtures Available</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Gas Mix</th>
+                <th>Oxygen Percentage</th>
+                <th>Nitrogen Percentage</th>
+                <th>Helium Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nitrox 28%</td>
+                <td>28%</td>
+                <td>72%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>Nitrox 32%</td>
+                <td>32%</td>
+                <td>68%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>Nitrox 36%</td>
+                <td>36%</td>
+                <td>64%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>Trimix 10%</td>
+                <td>10%</td>
+                <td>80%</td>
+                <td>10%</td>
+            </tr>
+            <tr>
+                <td>Trimix 12%</td>
+                <td>12%</td>
+                <td>78%</td>
+                <td>10%</td>
+            </tr>
+            <tr>
+                <td>Trimix 14%</td>
+                <td>14%</td>
+                <td>76%</td>
+                <td>10%</td>
+            </tr>
+            <tr>
+                <td>Heliox 30%</td>
+                <td>30%</td>
+                <td>70%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>Heliox 40%</td>
+                <td>40%</td>
+                <td>60%</td>
+                <td>0%</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Gas Amount Calculation</h2>
+    <p>To fulfill your desired gas mix, the following amounts of each gas component are approximately required in a
+        scuba tank:</p>
+    <ul>
+        {% if oxygen_amount is defined %}
+        <li>Oxygen: Add approximately {{ oxygen_amount }} PSI of oxygen to the tank.</li>
+        {% endif %}
+        {% if nitrogen_amount is defined %}
+        <li>Nitrogen: Add approximately {{ nitrogen_amount }} PSI of nitrogen to the tank.</li>
+        {% endif %}
+        {% if helium_amount is defined %}
+        <li>Helium: Add approximately {{ helium_amount }} PSI of helium to the tank.</li>
+        {% endif %}
+    </ul>
 
-    <p>Target PPO2: {{ target_ppo2 }}</p>
-    <p>Current O2: {{ current_o2 }}</p>
-    <p>Current N2: {{ current_n2 }}</p>
-    <p>Current He: {{ current_he }}</p>
-
-    <!-- Add more content here as needed -->
+    <h2>Instructions for Gas Blending</h2>
+    <p>If you would like us to mix the gas for you, please follow these steps:</p>
+    <ol>
+        <li>Ensure you have a suitable gas blending station and equipment.</li>
+        <li>Check the current oxygen, nitrogen, and helium percentages in the tank.</li>
+        <li>If necessary, empty the tank to remove the existing gas mixture.</li>
+        <li>Add the appropriate amounts of oxygen, nitrogen, and helium to the tank using precise gas blending
+            techniques.</li>
+        <li>Thoroughly mix the gases in the tank to ensure uniform distribution.</li>
+        <li>Perform gas analysis to verify the final gas mixture meets the desired specifications.</li>
+        <li>If the gas mixture is within the acceptable range, label the tank with the gas type and percentages.</li>
+        <li>Store the tank in a secure and well-ventilated area away from heat or ignition sources.</li>
+    </ol>
 </div>
 {% endblock %}
