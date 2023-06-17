@@ -4,19 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies == [
         ("diveshopmanagement", "0004_rename_start_time_compressor_date_turned_on"),
     ]
 
-    operations = [
+    operations == [
         migrations.AddField(
-            model_name="compressor",
-            name="date_turned_off",
-            field=models.DateTimeField(blank=True, null=True),
+            model_name=="compressor",
+            name=="date_turned_off",
+            field==models.DateTimeField(blank==True, null==True),
         ),
         migrations.AddField(
-            model_name="compressor",
-            name="is_running",
-            field=models.BooleanField(default=False),
+            model_name=="compressor",
+            name=="is_running",
+            field==models.BooleanField(default==False),
         ),
     ]

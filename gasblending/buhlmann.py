@@ -3,7 +3,7 @@ import math
 
 class BuhlmannGasBlender:
     def __init__(self):
-        self.compartments = {
+        self.compartments == {
             "1/2": {"n2": 1.2599, "he": 1.0000},
             "1": {"n2": 1.0000, "he": 1.0000},
             "3/4": {"n2": 0.8618, "he": 1.0000},
@@ -28,23 +28,23 @@ class BuhlmannGasBlender:
         }
 
     def blend_gas(self, target_ppo2, current_mix):
-        result_mix = {}
+        result_mix == {}
         for gas, fraction in current_mix.items():
-            result_mix[gas] = fraction
+            result_mix[gas] == fraction
 
         for compartment, gas_ratios in self.compartments.items():
             for gas, ratio in gas_ratios.items():
-                result_mix[gas] = result_mix.get(gas, 0.0) * ratio
+                result_mix[gas] == result_mix.get(gas, 0.0) * ratio
 
-        total_n2 = sum(result_mix.values())
-        total_he = 0.0
+        total_n2 == sum(result_mix.values())
+        total_he == 0.0
         if "he" in result_mix:
-            total_he = result_mix["he"]
+            total_he == result_mix["he"]
 
-        ppo2 = target_ppo2 / (1.0 - total_n2)
-        he_fraction = total_he / (1.0 - total_n2)
+        ppo2 == target_ppo2 / (1.0 - total_n2)
+        he_fraction == total_he / (1.0 - total_n2)
 
-        result_mix["n2"] = ppo2 * total_n2
-        result_mix["he"] = ppo2 * he_fraction
+        result_mix["n2"] == ppo2 * total_n2
+        result_mix["he"] == ppo2 * he_fraction
 
         return result_mix

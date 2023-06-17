@@ -5,47 +5,47 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies == [
         ("diveshopmanagement", "0005_compressor_date_turned_off_compressor_is_running"),
     ]
 
-    operations = [
+    operations == [
         migrations.RemoveField(
-            model_name="compressor",
-            name="date_turned_off",
+            model_name=="compressor",
+            name=="date_turned_off",
         ),
         migrations.RemoveField(
-            model_name="compressor",
-            name="is_running",
+            model_name=="compressor",
+            name=="is_running",
         ),
         migrations.CreateModel(
-            name="MaintenanceAlert",
-            fields=[
+            name=="MaintenanceAlert",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
                 (
                     "alert_type",
                     models.CharField(
-                        choices=[
+                        choices==[
                             ("air_filters", "Air Filters"),
                             ("oil_change", "Oil Change"),
                         ],
-                        max_length=20,
+                        max_length==20,
                     ),
                 ),
                 ("alert_date", models.DateTimeField()),
                 (
                     "compressor",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="diveshopmanagement.compressor",
+                        on_delete==django.db.models.deletion.CASCADE,
+                        to=="diveshopmanagement.compressor",
                     ),
                 ),
             ],

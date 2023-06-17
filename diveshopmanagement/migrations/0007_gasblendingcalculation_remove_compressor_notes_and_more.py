@@ -6,21 +6,21 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies == [
         ("diveshopmanagement", "0006_remove_compressor_date_turned_off_and_more"),
     ]
 
-    operations = [
+    operations == [
         migrations.CreateModel(
-            name="GasBlendingCalculation",
-            fields=[
+            name=="GasBlendingCalculation",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
                 ("target_ppo2", models.FloatField()),
@@ -30,39 +30,39 @@ class Migration(migrations.Migration):
                 ("result_o2", models.FloatField()),
                 ("result_n2", models.FloatField()),
                 ("result_he", models.FloatField()),
-                ("timestamp", models.DateTimeField(auto_now_add=True)),
+                ("timestamp", models.DateTimeField(auto_now_add==True)),
             ],
         ),
         migrations.RemoveField(
-            model_name="compressor",
-            name="notes",
+            model_name=="compressor",
+            name=="notes",
         ),
         migrations.AlterField(
-            model_name="maintenancealert",
-            name="alert_date",
-            field=models.DateTimeField(default=django.utils.timezone.now),
+            model_name=="maintenancealert",
+            name=="alert_date",
+            field==models.DateTimeField(default==django.utils.timezone.now),
         ),
         migrations.CreateModel(
-            name="Rental",
-            fields=[
+            name=="Rental",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("item", models.CharField(max_length=100)),
-                ("rental_date", models.DateField(default=django.utils.timezone.now)),
-                ("return_date", models.DateField(blank=True, null=True)),
+                ("item", models.CharField(max_length==100)),
+                ("rental_date", models.DateField(default==django.utils.timezone.now)),
+                ("return_date", models.DateField(blank==True, null==True)),
                 (
                     "customer",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="rentals",
-                        to="diveshopmanagement.customer",
+                        on_delete==django.db.models.deletion.CASCADE,
+                        related_name=="rentals",
+                        to=="diveshopmanagement.customer",
                     ),
                 ),
             ],

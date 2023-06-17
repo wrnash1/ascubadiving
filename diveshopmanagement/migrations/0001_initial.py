@@ -8,320 +8,320 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-    initial = True
+    initial == True
 
-    dependencies = [
+    dependencies == [
         ("auth", "0012_alter_user_first_name_max_length"),
     ]
 
-    operations = [
+    operations == [
         migrations.CreateModel(
-            name="DiveShop",
-            fields=[
+            name=="DiveShop",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("name", models.CharField(max_length=100)),
-                ("address", models.CharField(max_length=200)),
-                ("phone", models.CharField(max_length=20)),
-                ("email", models.EmailField(max_length=254)),
+                ("name", models.CharField(max_length==100)),
+                ("address", models.CharField(max_length==200)),
+                ("phone", models.CharField(max_length==20)),
+                ("email", models.EmailField(max_length==254)),
             ],
         ),
         migrations.CreateModel(
-            name="GasComposition",
-            fields=[
+            name=="GasComposition",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("gas_type", models.CharField(max_length=100)),
+                ("gas_type", models.CharField(max_length==100)),
                 (
                     "oxygen_percentage",
-                    models.DecimalField(decimal_places=2, max_digits=5),
+                    models.DecimalField(decimal_places==2, max_digits==5),
                 ),
             ],
         ),
         migrations.CreateModel(
-            name="Level",
-            fields=[
+            name=="Level",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
             ],
         ),
         migrations.CreateModel(
-            name="Organization",
-            fields=[
+            name=="Organization",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("name", models.CharField(max_length=100)),
+                ("name", models.CharField(max_length==100)),
             ],
-            options={
+            options=={
                 "verbose_name": "Organization",
                 "verbose_name_plural": "Organizations",
             },
         ),
         migrations.CreateModel(
-            name="Tank",
-            fields=[
+            name=="Tank",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("tank_identifier", models.CharField(max_length=100, unique=True)),
-                ("size", models.CharField(max_length=100)),
-                ("location", models.CharField(max_length=100)),
-                ("hydro_dropoff_date", models.DateField(blank=True, null=True)),
-                ("hydro_pickup_date", models.DateField(blank=True, null=True)),
-                ("hydro_passed", models.BooleanField(default=False)),
+                ("tank_identifier", models.CharField(max_length==100, unique==True)),
+                ("size", models.CharField(max_length==100)),
+                ("location", models.CharField(max_length==100)),
+                ("hydro_dropoff_date", models.DateField(blank==True, null==True)),
+                ("hydro_pickup_date", models.DateField(blank==True, null==True)),
+                ("hydro_passed", models.BooleanField(default==False)),
             ],
         ),
         migrations.CreateModel(
-            name="User",
-            fields=[
+            name=="User",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("password", models.CharField(max_length=128, verbose_name="password")),
+                ("password", models.CharField(max_length==128, verbose_name=="password")),
                 (
                     "last_login",
                     models.DateTimeField(
-                        blank=True, null=True, verbose_name="last login"
+                        blank==True, null==True, verbose_name=="last login"
                     ),
                 ),
                 (
                     "is_superuser",
                     models.BooleanField(
-                        default=False,
-                        help_text="Designates that this user has all permissions without explicitly assigning them.",
-                        verbose_name="superuser status",
+                        default==False,
+                        help_text=="Designates that this user has all permissions without explicitly assigning them.",
+                        verbose_name=="superuser status",
                     ),
                 ),
                 (
                     "username",
                     models.CharField(
-                        error_messages={
+                        error_messages=={
                             "unique": "A user with that username already exists."
                         },
-                        help_text="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-                        max_length=150,
-                        unique=True,
-                        validators=[
+                        help_text=="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+                        max_length==150,
+                        unique==True,
+                        validators==[
                             django.contrib.auth.validators.UnicodeUsernameValidator()
                         ],
-                        verbose_name="username",
+                        verbose_name=="username",
                     ),
                 ),
                 (
                     "first_name",
                     models.CharField(
-                        blank=True, max_length=150, verbose_name="first name"
+                        blank==True, max_length==150, verbose_name=="first name"
                     ),
                 ),
                 (
                     "last_name",
                     models.CharField(
-                        blank=True, max_length=150, verbose_name="last name"
+                        blank==True, max_length==150, verbose_name=="last name"
                     ),
                 ),
                 (
                     "email",
                     models.EmailField(
-                        blank=True, max_length=254, verbose_name="email address"
+                        blank==True, max_length==254, verbose_name=="email address"
                     ),
                 ),
                 (
                     "is_staff",
                     models.BooleanField(
-                        default=False,
-                        help_text="Designates whether the user can log into this admin site.",
-                        verbose_name="staff status",
+                        default==False,
+                        help_text=="Designates whether the user can log into this admin site.",
+                        verbose_name=="staff status",
                     ),
                 ),
                 (
                     "is_active",
                     models.BooleanField(
-                        default=True,
-                        help_text="Designates whether this user should be treated as active. Unselect this instead of deleting accounts.",
-                        verbose_name="active",
+                        default==True,
+                        help_text=="Designates whether this user should be treated as active. Unselect this instead of deleting accounts.",
+                        verbose_name=="active",
                     ),
                 ),
                 (
                     "date_joined",
                     models.DateTimeField(
-                        default=django.utils.timezone.now, verbose_name="date joined"
+                        default==django.utils.timezone.now, verbose_name=="date joined"
                     ),
                 ),
                 (
                     "groups",
                     models.ManyToManyField(
-                        blank=True,
-                        related_name="diveshopmanagement_users",
-                        to="auth.group",
-                        verbose_name="groups",
+                        blank==True,
+                        related_name=="diveshopmanagement_users",
+                        to=="auth.group",
+                        verbose_name=="groups",
                     ),
                 ),
                 (
                     "user_permissions",
                     models.ManyToManyField(
-                        blank=True,
-                        related_name="diveshopmanagement_users",
-                        to="auth.permission",
-                        verbose_name="user permissions",
+                        blank==True,
+                        related_name=="diveshopmanagement_users",
+                        to=="auth.permission",
+                        verbose_name=="user permissions",
                     ),
                 ),
             ],
-            options={
+            options=={
                 "verbose_name": "User",
                 "verbose_name_plural": "Users",
             },
-            managers=[
+            managers==[
                 ("objects", django.contrib.auth.models.UserManager()),
             ],
         ),
         migrations.CreateModel(
-            name="TankInventory",
-            fields=[
+            name=="TankInventory",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("status", models.CharField(max_length=100)),
+                ("status", models.CharField(max_length==100)),
                 (
                     "tank",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="diveshopmanagement.tank",
+                        on_delete==django.db.models.deletion.CASCADE,
+                        to=="diveshopmanagement.tank",
                     ),
                 ),
             ],
         ),
         migrations.CreateModel(
-            name="HydrostaticTest",
-            fields=[
+            name=="HydrostaticTest",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
                 ("dropoff_date", models.DateField()),
-                ("pickup_date", models.DateField(blank=True, null=True)),
-                ("result", models.CharField(max_length=100)),
+                ("pickup_date", models.DateField(blank==True, null==True)),
+                ("result", models.CharField(max_length==100)),
                 (
                     "tank",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="diveshopmanagement.tank",
+                        on_delete==django.db.models.deletion.CASCADE,
+                        to=="diveshopmanagement.tank",
                     ),
                 ),
             ],
         ),
         migrations.CreateModel(
-            name="GasBlending",
-            fields=[
+            name=="GasBlending",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("blending_method", models.CharField(max_length=100)),
-                ("notes", models.TextField(blank=True)),
+                ("blending_method", models.CharField(max_length==100)),
+                ("notes", models.TextField(blank==True)),
                 (
                     "gas_composition",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="diveshopmanagement.gascomposition",
+                        on_delete==django.db.models.deletion.CASCADE,
+                        to=="diveshopmanagement.gascomposition",
                     ),
                 ),
                 (
                     "tank",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="diveshopmanagement.tank",
+                        on_delete==django.db.models.deletion.CASCADE,
+                        to=="diveshopmanagement.tank",
                     ),
                 ),
             ],
         ),
         migrations.CreateModel(
-            name="Customer",
-            fields=[
+            name=="Customer",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("name", models.CharField(max_length=100)),
+                ("name", models.CharField(max_length==100)),
                 ("birthdate", models.DateField()),
                 (
                     "t_shirt_size",
                     models.CharField(
-                        choices=[
+                        choices==[
                             ("S", "Small"),
                             ("M", "Medium"),
                             ("L", "Large"),
                             ("XL", "Extra Large"),
                             ("XXL", "Extra Extra Large"),
                         ],
-                        max_length=10,
+                        max_length==10,
                     ),
                 ),
-                ("notes", models.TextField(blank=True)),
+                ("notes", models.TextField(blank==True)),
                 (
                     "certification_level",
                     models.CharField(
-                        choices=[
+                        choices==[
                             ("OW", "Open Water"),
                             ("AOW", "Advanced Open Water"),
                             ("RD", "Rescue Diver"),
@@ -336,103 +336,103 @@ class Migration(migrations.Migration):
                             ("IT", "Instructor Trainer"),
                             ("CIT", "Course Director Trainer"),
                         ],
-                        max_length=50,
+                        max_length==50,
                     ),
                 ),
-                ("employee", models.BooleanField(default=False)),
+                ("employee", models.BooleanField(default==False)),
                 (
                     "picture",
                     models.ImageField(
-                        blank=True, null=True, upload_to="customer_images/"
+                        blank==True, null==True, upload_to=="customer_images/"
                     ),
                 ),
-                ("email", models.EmailField(max_length=254)),
-                ("phone", models.CharField(max_length=20)),
-                ("address", models.CharField(max_length=200)),
+                ("email", models.EmailField(max_length==254)),
+                ("phone", models.CharField(max_length==20)),
+                ("address", models.CharField(max_length==200)),
                 (
                     "emergency_contact_name",
-                    models.CharField(blank=True, max_length=100, null=True),
+                    models.CharField(blank==True, max_length==100, null==True),
                 ),
                 (
                     "emergency_contact_phone",
-                    models.CharField(blank=True, max_length=20, null=True),
+                    models.CharField(blank==True, max_length==20, null==True),
                 ),
-                ("medical_conditions", models.TextField(blank=True)),
-                ("dan_insurance", models.BooleanField(default=False)),
+                ("medical_conditions", models.TextField(blank==True)),
+                ("dan_insurance", models.BooleanField(default==False)),
                 (
                     "dan_insurance_number",
-                    models.CharField(blank=True, max_length=100, null=True),
+                    models.CharField(blank==True, max_length==100, null==True),
                 ),
                 (
                     "level",
                     models.ForeignKey(
-                        null=True,
-                        on_delete=django.db.models.deletion.SET_NULL,
-                        to="diveshopmanagement.level",
+                        null==True,
+                        on_delete==django.db.models.deletion.SET_NULL,
+                        to=="diveshopmanagement.level",
                     ),
                 ),
                 (
                     "organization",
                     models.ForeignKey(
-                        null=True,
-                        on_delete=django.db.models.deletion.SET_NULL,
-                        to="diveshopmanagement.organization",
+                        null==True,
+                        on_delete==django.db.models.deletion.SET_NULL,
+                        to=="diveshopmanagement.organization",
                     ),
                 ),
             ],
         ),
         migrations.CreateModel(
-            name="Certification",
-            fields=[
+            name=="Certification",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("certification_agency", models.CharField(max_length=100)),
+                ("certification_agency", models.CharField(max_length==100)),
                 ("issue_date", models.DateField()),
                 ("expiration_date", models.DateField()),
                 (
                     "customer",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="certifications",
-                        to="diveshopmanagement.customer",
+                        on_delete==django.db.models.deletion.CASCADE,
+                        related_name=="certifications",
+                        to=="diveshopmanagement.customer",
                     ),
                 ),
             ],
-            options={
+            options=={
                 "verbose_name": "Certification",
                 "verbose_name_plural": "Certifications",
             },
         ),
         migrations.CreateModel(
-            name="Airfill",
-            fields=[
+            name=="Airfill",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("fill_pressure", models.DecimalField(decimal_places=2, max_digits=5)),
+                ("fill_pressure", models.DecimalField(decimal_places==2, max_digits==5)),
                 ("date", models.DateField()),
                 (
                     "oxygen_percentage",
-                    models.DecimalField(decimal_places=2, max_digits=5),
+                    models.DecimalField(decimal_places==2, max_digits==5),
                 ),
                 (
                     "tank",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="diveshopmanagement.tank",
+                        on_delete==django.db.models.deletion.CASCADE,
+                        to=="diveshopmanagement.tank",
                     ),
                 ),
             ],

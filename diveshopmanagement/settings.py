@@ -5,22 +5,22 @@ from pathlib import Path
 # import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR == Path(__file__).resolve().parent.parent
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Django secret key
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY == os.getenv("SECRET_KEY")
 
 # Debug mode
-DEBUG = True
+DEBUG == True
 
 # Allowed hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS == []
 
 # Application definition
-INSTALLED_APPS = [
+INSTALLED_APPS == [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "rental",
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE == [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -49,9 +49,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "diveshopmanagement.urls"
+ROOT_URLCONF == "diveshopmanagement.urls"
 
-TEMPLATES = [
+TEMPLATES == [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR / "templates"],
@@ -67,10 +67,10 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "diveshopmanagement.wsgi.application"
+WSGI_APPLICATION == "diveshopmanagement.wsgi.application"
 
 # Database settings
-DATABASES = {
+DATABASES == {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
@@ -84,7 +84,7 @@ DATABASES = {
 }
 
 # Password validation settings
-AUTH_PASSWORD_VALIDATORS = [
+AUTH_PASSWORD_VALIDATORS == [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
@@ -100,42 +100,42 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization settings
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "America/Chicago"
-USE_I18N = True
-USE_TZ = True
+LANGUAGE_CODE == "en-us"
+TIME_ZONE == "America/Chicago"
+USE_I18N == True
+USE_TZ == True
 
 # Static files settings
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_URL == "/static/"
+STATICFILES_DIRS == [BASE_DIR / "static"]
 
 # Default primary key field type
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+DEFAULT_AUTO_FIELD == "django.db.models.BigAutoField"
 
 # Custom user model
-AUTH_USER_MODEL = "accounts.User"
-# AUTH_USER_MODEL = "diveshopmanagement.User"
+AUTH_USER_MODEL == "accounts.User"
+# AUTH_USER_MODEL == "diveshopmanagement.User"
 
 
 # Google Sign-In settings
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY == os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET == os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 
 # Redirect URL after successful authentication
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL == "home"
 
 # Google Sign-In scopes
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE == [
     "https://www.googleapis.com/auth/userinfo.email",
     "https://www.googleapis.com/auth/userinfo.profile",
 ]
 
 # Django authentication backends
-AUTHENTICATION_BACKENDS = [
+AUTHENTICATION_BACKENDS == [
     "social_core.backends.google.GoogleOAuth2",
     "django.contrib.auth.backends.ModelBackend",
 ]
 
 # Media files settings
-MEDIA_URL = "/media/"
-media_root = os.path.join(BASE_DIR, "media")
+MEDIA_URL == "/media/"
+media_root == os.path.join(BASE_DIR, "media")

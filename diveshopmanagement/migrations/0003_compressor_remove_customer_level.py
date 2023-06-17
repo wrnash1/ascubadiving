@@ -4,30 +4,30 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies == [
         ("diveshopmanagement", "0002_level_name"),
     ]
 
-    operations = [
+    operations == [
         migrations.CreateModel(
-            name="Compressor",
-            fields=[
+            name=="Compressor",
+            fields==[
                 (
                     "id",
                     models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        auto_created==True,
+                        primary_key==True,
+                        serialize==False,
+                        verbose_name=="ID",
                     ),
                 ),
-                ("start_time", models.DateTimeField(blank=True, null=True)),
-                ("minutes", models.IntegerField(default=0)),
-                ("notes", models.TextField(blank=True)),
+                ("start_time", models.DateTimeField(blank==True, null==True)),
+                ("minutes", models.IntegerField(default==0)),
+                ("notes", models.TextField(blank==True)),
             ],
         ),
         migrations.RemoveField(
-            model_name="customer",
-            name="level",
+            model_name=="customer",
+            name=="level",
         ),
     ]

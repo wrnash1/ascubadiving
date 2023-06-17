@@ -1,26 +1,98 @@
-{% extends 'base.html' %}
+<h2>Nitrox Fill &amp; Price Details — Top Up Mix</h2>
+<table>
+  <tr>
+    <th>Current Mix</th>
+    <th>Requested Mix</th>
+  </tr>
+  <tr>
+    <td>
+      Current Oxygen: {{ current_oxygen }}%<br>
+      Current Nitrogen: {{ current_nitrogen }}%
+    </td>
+    <td>
+      Required Oxygen: {{ requested_oxygen }}%<br>
+      Required Nitrogen: {{ requested_nitrogen }}%
+    </td>
+  </tr>
+</table>
 
-{% block content %}
-<h1>Gas Blending</h1>
+<!-- Add the remaining table rows for dive planning and cylinder details -->
 
-<form method="POST" action="{% url 'gas_blending' %}">
-    {% csrf_token %}
-    <label for="target_ppo2">Target pPO2:</label>
-    <input type="number" step="0.01" name="target_ppo2" required><br><br>
+<table>
+  <tr>
+    <th>Gas</th>
+    <th>Litres</th>
+    <th>Bar</th>
+    <th>End Bar</th>
+    <th>Price (inc GST)</th>
+  </tr>
+  <tr>
+    <td>Start Nitrox 24:</td>
+    <td>{{ start_nitrox }}</td>
+    <td>{{ current_pressure }}</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Add Oxygen:</td>
+    <td>{{ add_oxygen }}</td>
+    <td>{{ requested_oxygen }}</td>
+    <td>{{ pressure_difference }}</td>
+    <td>19.23</td>
+  </tr>
+  <tr>
+    <td>Add Air:</td>
+    <td>{{ add_air }}</td>
+    <td>158</td>
+    <td>{{ fill_pressure }}</td>
+    <td>8.50</td>
+  </tr>
+  <tr>
+    <td>Mix Totals:</td>
+    <td>{{ mix_totals }}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Fill Totals:</td>
+    <td>{{ fill_totals }}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Blending:</td>
+    <td>10.00</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
-    <label for="current_o2">Current Oxygen (%):</label>
-    <input type="number" step="0.01" name="current_o2" required><br><br>
+<h3>Price from The Scuba Doctor</h3>
+<table>
+  <tr>
+    <td>Price (ex GST):</td>
+    <td>34.30</td>
+  </tr>
+  <tr>
+    <td>GST:</td>
+    <td>3.43</td>
+  </tr>
+  <tr>
+    <td>Total Price (inc GST):</td>
+    <td>37.73</td>
+  </tr>
+</table>
 
-    <label for="desired_o2">Desired Oxygen (%):</label>
-    <input type="number" step="0.01" name="desired_o2" required><br><br>
+<p>Nitrox Fill Prices: (inc GST)</p>
+<ul>
+  <li>Oxygen: 5.0 cents per litre</li>
+  <li>Air: 8.50 per fill for O2 less than 100%</li>
+  <li>Blending: 10.00 per fill</li>
+</ul>
 
-    <input type="submit" value="Blend Gas">
-</form>
+<p>Please Note: The above prices are subject to change without notice.</p>
 
-{% if blended_mix %}
-<h2>Blended Gas Mix:</h2>
-<p>Oxygen: {{ blended_mix.o2 }}%</p>
-<p>Nitrogen: {{ blended_mix.n2 }}%</p>
-<p>Helium: {{ blended_mix.he }}%</p>
-{% endif %}
-{% endblock %}
+<p>Disclaimer: This calculator provides information about gas mixing. UNDER NO CIRCUMSTANCES is there any implication that any gas mixture is safe or even life supporting. If you have not received training in Gas Mixing, Nitrox, Trimix or Heliox you should not attempt to mix any gas. Improper use of gasses in diving can result in injury or death. The Scuba Doctor takes no responsibility for the information provided above.</p>

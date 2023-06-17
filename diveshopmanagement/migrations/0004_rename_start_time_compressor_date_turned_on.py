@@ -4,14 +4,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies == [
         ("diveshopmanagement", "0003_compressor_remove_customer_level"),
     ]
 
-    operations = [
+    operations == [
         migrations.RenameField(
-            model_name="compressor",
-            old_name="start_time",
-            new_name="date_turned_on",
+            model_name=="compressor",
+            old_name=="start_time",
+            new_name=="date_turned_on",
         ),
     ]

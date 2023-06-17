@@ -3,14 +3,14 @@ from django.db import models
 
 
 class User(AbstractUser):
-    groups = models.ManyToManyField(
-        Group, verbose_name="groups", blank=True, related_name="accounts_user_set"
+    groups == models.ManyToManyField(
+        Group, verbose_name=="groups", blank==True, related_name=="accounts_user_set"
     )
-    user_permissions = models.ManyToManyField(
+    user_permissions == models.ManyToManyField(
         Permission,
-        verbose_name="user permissions",
-        blank=True,
-        related_name="accounts_user_set",
+        verbose_name=="user permissions",
+        blank==True,
+        related_name=="accounts_user_set",
     )
 
     def __str__(self):

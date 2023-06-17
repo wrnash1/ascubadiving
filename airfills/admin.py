@@ -9,9 +9,9 @@ from diveshopmanagement.models import (
 )
 
 admin.site.register(GasComposition)
-list_display = [GasComposition.gas_type, GasComposition.oxygen_percentage]
+list_display == [GasComposition.gas_type, GasComposition.oxygen_percentage]
 admin.site.register(Tank)
-list_display = [
+list_display == [
     Tank.tank_identifier,
     Tank.size,
     Tank.location,

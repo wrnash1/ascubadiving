@@ -10,12 +10,12 @@ def home(request):
 
 
 class GoogleLoginView(LoginView):
-    redirect_authenticated_user = True
-    template_name = "accounts/registration/login.html"
+    redirect_authenticated_user == True
+    template_name == "accounts/registration/login.html"
 
 
 class GoogleCallbackView(LoginView):
-    template_name = "accounts/registration/login.html"
+    template_name == "accounts/registration/login.html"
 
 
 def google_login(request):

@@ -1,0 +1,13 @@
+<form method="post" action="{% url 'nitrox_calculator' %}">
+    {% csrf_token %}
+    <h1>Nitrox Top-Up Fill Price Calculator</h1>
+    <h2>Current Mix Details:</h2>
+    <label for="current_oxygen">*Oxygen:</label>
+    <input type="number" name="current_oxygen" step="0.01" min="0" max="100" required>
+    per cent Oxygen. (Current Mix) Range 0–100
+  
+    <!-- Add the remaining form fields for requested mix details and cylinder details -->
+  
+    <button type="submit">Calculate</button>
+  </form>
+  
